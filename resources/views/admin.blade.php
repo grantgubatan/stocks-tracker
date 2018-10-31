@@ -7,7 +7,7 @@
   <main class="page-content">
       <div class="">
         <div class="row">
-          <h1>MANAGE CLIENTS____</h1>
+          <h1>MANAGE CLIENTS</h1>
         </div>
 
         <div class="row">
