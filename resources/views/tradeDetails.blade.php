@@ -7,6 +7,8 @@
     border-radius: 5px;
   }
 </style>
+
+@if($trade->status === "Bought")
 <div class="container page-wrapper chiller-theme toggled" id="app-6">
   <!-- sidebar-wrapper  -->
   <main class="page-content">
@@ -16,6 +18,42 @@
             <div class="card-body">
               <h1>{{$trade->company}}: {{$trade->ticker}}</h1>
               <h4>Owner: {{$trade->client->fullname}}</h4>
+              <div class="">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sellTrade{{$trade->id}}">
+                  Sell Trade
+                </button>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="sellTrade{{$trade->id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <form class="" action="{{url('trade-sell')}}" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Sell Trade -  {{$trade->company}}?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="">
+                            <h2>Are you sure?</h2>
+                            <input type="hidden" name="id" value="{{$trade->id}}" class="form-control">
+                            <input type="hidden" name="sold_value" :value="current_value_decim" class="form-control">
+                            <input type="hidden" name="profit" :value="profit_decim" class="form-control">
+                            <input type="hidden" name="gain_percentage" :value="gain_percentage_decim" class="form-control">
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-secondary btn-sm">Confirm</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <hr>
 
@@ -54,25 +92,6 @@
                   <p class="colorize"><span v-cloak>@{{gain_percentage}}%</span></p>
                 </div>
               </div>
-              <!-- <div class="">
-                <hr>
-
-                <h1>Trade History</h1>
-
-                <div class="row">
-
-                  <div class="col-6">
-                    <h4>Profit</h4>
-                    <p><span v-cloak>@{{profit}}</span></p>
-                  </div>
-
-                  <div class="col-6">
-                    <h4>Gain Percentage</h4>
-                    <p><span v-cloak>@{{gain_percentage}}%</span></p>
-                  </div>
-                </div>
-              </div> -->
-
             </div>
           </div>
         </div>
@@ -160,6 +179,7 @@
 <!-- page-content" -->
 </div>
 
+
 <script type="text/javascript">
 var initial_value = "";
 function isIterable(obj) {
@@ -209,8 +229,10 @@ $( document ).ready(function() {
                     return '$' + parseFloat(value).toFixed(2);
                 });
                 current_value = value2["4. close"] * "{{$trade->volume}}";
-                profit = (current_value - "{{$trade->initial_investment_value}}") * "{{$trade->volume}}";
-                gain_percentage = (profit / "{{$trade->initial_investment_value}}") * 100;
+                current_value_decim = value2["4. close"] * "{{$trade->volume}}";
+                initial_investment_price = "{{$trade->initial_investment_value}}";
+                profit = current_value.toFixed(2) - parseFloat(initial_investment_price).toFixed(2);
+                gain_percentage = (profit / parseFloat(initial_investment_price).toFixed(2)) * 100;
                 var app6 = new Vue({
                 el: '#app-6',
                 data: {
@@ -220,8 +242,12 @@ $( document ).ready(function() {
                   close: formatDollar(parseFloat(value2["4. close"])),
                   volume: formatDollar(parseFloat(value2["5. volume"])),
                   current_value: formatDollar(parseFloat(current_value)),
+                  current_value_decim: current_value_decim.toFixed(2),
                   profit: formatDollar(profit),
+                  profit_decim: profit.toFixed(2),
                   gain_percentage: gain_percentage,
+                  gain_percentage_decim: gain_percentage.toFixed(2),
+
                 }
               });
 
@@ -251,4 +277,94 @@ $( document ).ready(function() {
     }});
 });
 </script>
+
+@else
+<div class="container page-wrapper chiller-theme toggled">
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+      <div class="">
+        <div class="row">
+          <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
+            <div class="card-body">
+              <div class="row">
+
+                <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
+                  <div class="card-body">
+                    <h1>{{$trade->company}}: {{$trade->ticker}}</h1>
+                    <h4>Owner: {{$trade->client->fullname}}</h4>
+                    <hr>
+                    <div class="row">
+                      <div class="col-6">
+                        <h4>Initial Investment</h4>
+                        <p>{{$trade->initial_investment_value}}</p>
+                      </div>
+
+                      <div class="col-6">
+                        <h4>Sold Value</h4>
+                        <p>{{$trade->sold_value}}</p>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6">
+                        <h4>Profit</h4>
+                        <p id="profit" data-profit="{{$trade->profit}}">{{$trade->profit}}</p>
+                      </div>
+
+                      <div class="col-6">
+                        <h4>Gain Percentage</h4>
+                        <p id="gp" class="colorize" data-percentage="{{$trade->gain_percentage}}">{{$trade->gain_percentage}}%</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <h1>Trade History</h1>
+              <div class="row">
+                <div class="col-4">
+                  <h3>Buy Date</h3>
+                  <p>{{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</p>
+                </div>
+
+                <div class="col-4">
+                  <h3>Sell Date</h3>
+                  <p>{{  $trade->sell_date === null ? "--" : \Carbon\Carbon::parse($trade->sell_date)->format('m/d/Y') }}</p>
+                </div>
+
+                <div class="col-4">
+                  <h3>Stock Status</h3>
+                  <p class="gain">{{$trade->status}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+<!-- page-content" -->
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    gain_percentage = $("#gp").data("percentage");
+    if(gain_percentage == 0)
+    {
+      $(".colorize").addClass("zero");
+    }
+    else if(gain_percentage > 0)
+    {
+      $(".colorize").addClass("gain");
+    }
+    else if(gain_percentage < 0)
+    {
+      $(".colorize").addClass("loss");
+    }
+
+  });
+</script>
+
+@endif
 @endsection

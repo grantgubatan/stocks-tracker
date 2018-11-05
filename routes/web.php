@@ -31,6 +31,7 @@ Route::post('/client-edit', 'HomeController@editClient')->name('client-edit'); /
 Route::get('/create-trade/client/{id}', 'HomeController@adminCreateTrade');
 Route::post('/edit-balance', 'HomeController@editBalance')->name('edit-balance');
 Route::post('/client-edit-email', 'HomeController@ClientEditEmail')->name('client-edit-email');
+Route::post('/client-delete', 'HomeController@clientDelete');
 /* End Client */
 
 
@@ -38,6 +39,8 @@ Route::post('/client-edit-email', 'HomeController@ClientEditEmail')->name('clien
 Route::post('/trade-create', 'HomeController@createTrade')->name('trade-create')->middleware('verified');
 Route::get('/trade/{id}', 'HomeController@viewTrade')->middleware('verified');
 Route::get('/stocks', 'HomeController@tradeManager')->middleware('verified');
+Route::post('/trade-delete', 'HomeController@tradeDelete');
+Route::post('/trade-sell', 'HomeController@tradeSell');
 /* Trades */
 
 

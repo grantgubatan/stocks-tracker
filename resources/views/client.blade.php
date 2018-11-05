@@ -59,7 +59,7 @@
                   <th>Company Name</th>
                   <th>Stock Ticker</th>
                   <th>Volume</th>
-                  <th>View Stock Status</th>
+                  <th>Commands</th>
                 </tr>
               </thead>
               <tbody>
@@ -70,6 +70,39 @@
                         <td>{{$trade->volume}}</td>
                         <td>
                           <a href="{{url('trade/'.$trade->id)}}" class="btn btn-secondary">Trade Status</a>
+
+
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteTrade{{$trade->id}}">
+                            Delete Trade
+                          </button>
+
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="deleteTrade{{$trade->id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <form class="" action="{{url('trade-delete')}}" method="POST">
+                                  @csrf
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Trade - {{$trade->company}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="">
+                                      <h2>Are you sure?</h2>
+                                      <input type="hidden" name="id" value="{{$trade->id}}" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="submit" class="btn btn-secondary btn-sm">Confirm Deletion</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                   @endforeach

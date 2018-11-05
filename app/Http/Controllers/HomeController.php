@@ -382,4 +382,55 @@ class HomeController extends Controller
       return back()->with($notification);
 
     }
+
+    public function clientDelete(Request $request)
+    {
+      $client = Client::find($request->id);
+      $user_id = User::find($client->user_id);
+      $user_id->delete();
+      $client->delete();
+
+      $notification = array(
+        "message" => "Account Deleted",
+        "alert-type" => "error"
+      );
+
+      return back()->with($notification);
+
+    }
+
+    public function tradeDelete(Request $request)
+    {
+      $trade = Trade::findOrFail($request->id);
+      $trade->delete();
+
+      $notification = array(
+        "message" => "Trade Deleted",
+        "alert-type" => "error"
+      );
+
+      return back()->with($notification);
+
+    }
+
+
+    public function tradeSell(Request $request)
+    {
+      $trade = Trade::find($request->id);
+      $trade->status = "Sold";
+      $trade->sell_date = Carbon::now()->toDateTimeString();
+      $trade->sold_value = $request->sold_value;
+      $trade->profit = $request->profit;
+      $trade->gain_percentage = $request->gain_percentage;
+      $trade->save();
+
+      $notification = array(
+        "message" => "Trade Sold",
+        "alert-type" => "success"
+      );
+
+      return back()->with($notification);
+
+    }
+
 }

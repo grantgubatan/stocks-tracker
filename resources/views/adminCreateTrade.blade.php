@@ -12,6 +12,7 @@
                   <div class="row">
                       <div class="col-md-12">
                           <h1>Create Trade for {{$client->fullname}}</h1>
+                          <p> <a href="{{url('client/'.$client->id)}}" class="btn btn-secondary btn-sm">View Profile</a> </p>
                       </div>
 
                   </div>
@@ -166,7 +167,10 @@ function onConfirmClick()
           {
             toastr.success("Success, Page Reloading...");
             $("body").css("pointer-events", "none");
-            setTimeout(function(){ location.reload(); }, 2000);
+            setTimeout(function(){
+              // location.reload();
+              window.location = "/client/{{$client->id}}";
+            }, 2000);
           }
           else {
             console.log(data);
