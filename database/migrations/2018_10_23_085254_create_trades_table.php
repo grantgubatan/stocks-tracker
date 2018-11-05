@@ -21,6 +21,8 @@ class CreateTradesTable extends Migration
             $table->integer('volume');
             $table->decimal('initial_stock_price', 10, 2);
             $table->decimal('initial_investment_value', 10, 2);
+            $table->dateTime('sell_date')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

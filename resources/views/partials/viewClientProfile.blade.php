@@ -15,46 +15,57 @@
 		                <div class="col-md-12">
 		                    <h3>{{$client->fullname}}</h3>
                         <h6><b>Date Added</b> {{ \Carbon\Carbon::parse($client->created_at)->format('m/d/Y')}}</h6>
-                        <h6>{{$client->created_at->diffForHumans()}}</h6>
+                        <!-- <h6>{{$client->created_at->diffForHumans()}}</h6> -->
+
+                        <form class="" action="{{url('client-edit-email')}}" method="post" id="editEmailForm">
+                          @csrf
+                          <input type="hidden" name="id" value="{{$client->id}}">
+                          <div class="form-group row">
+                            <label for="email" class="col-4 col-form-label">Account Email</label>
+                            <div class="col-8">
+                              <input type="email" id="name" name="email" placeholder="Email" class="form-control here" type="text" value="{{$client->email}}" disabled>
+                            </div>
+                          </div>
+
+                          <div class="offset-4 col-8">
+                            <button id="triggerEditEmail" type="button" class="btn btn-secondary">Edit Email</button>
+                            <button type="submit" id="editButtonEmail" type="button" class="btn btn-default">Update Profile</button>
+                            <button id="cancelButtonEmail" type="button" class="btn btn-secondary" onclick="disableEdit()">Cancel</button>
+                          </div>
+                        </form>
 		                    <hr>
 		                </div>
 		            </div>
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <form action="{{url('client-edit')}}" method="POST">
+		                    <form action="{{url('client-edit')}}" method="POST" id="editClientForm">
                           @csrf
                               <input type="hidden" name="id" value="{{$client->id}}">
                               <div class="form-group row">
                                 <label for="name" class="col-4 col-form-label">Full Name</label>
                                 <div class="col-8">
-                                  <input id="name" name="fullname" placeholder="Full Name" class="form-control here" type="text" value="{{$client->fullname}}" disabled>
-                                </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Email</label>
-                                <div class="col-8">
-                                  <input id="name" name="email" placeholder="Email" class="form-control here" type="text" value="{{$client->email}}" disabled>
+                                  <input type="text" id="name" name="fullname" placeholder="Full Name" class="form-control here" type="text" value="{{$client->fullname}}" disabled>
                                 </div>
                               </div>
 
                               <div class="form-group row">
                                 <label for="email" class="col-4 col-form-label">Alternative Email</label>
                                 <div class="col-8">
-                                  <input id="name" name="email2" placeholder="Alternative Email" class="form-control here" type="text" value="{{$client->email2}}" disabled>
+                                  <input type="email" id="name" name="email2" placeholder="Alternative Email" class="form-control here" type="text" value="{{$client->email2}}" disabled>
                                 </div>
                               </div>
 
                               <div class="form-group row">
                                 <label for="email" class="col-4 col-form-label">Phone Number</label>
                                 <div class="col-8">
-                                  <input id="name" name="phone" placeholder="Phone Number" class="form-control here" type="text" value="{{$client->phone}}" disabled>
+                                  <input type="text" id="name" name="phone" placeholder="Phone Number" class="form-control here" type="text" value="{{$client->phone}}" disabled>
                                 </div>
                               </div>
 
                               <div class="form-group row">
                                 <label for="email" class="col-4 col-form-label">Alternative Phone Number</label>
                                 <div class="col-8">
-                                  <input id="name" name="phone2" placeholder="Alternative Phone Number" class="form-control here" type="text" value="{{$client->phone2}}" disabled>
+                                  <input type="text" id="name" name="phone2" placeholder="Alternative Phone Number" class="form-control here" type="text" value="{{$client->phone2}}" disabled>
                                 </div>
                               </div>
 
@@ -356,13 +367,23 @@
 <script type="text/javascript">
 
 function enableEdit() {
-    $('input:disabled, select:disabled, select:disabled').each(function () {
+    $("#editClientForm input:disabled, select:disabled, select:disabled").each(function () {
        $(this).removeAttr('disabled');
     });
 
     $('#triggerEdit').hide();
     $('#editButton').show();
     $('#cancelButton').show();
+}
+
+function enableEditEmail() {
+    $("#editEmailForm input[type='email']:disabled").each(function () {
+       $(this).removeAttr('disabled');
+    });
+
+    $('#triggerEditEmail').hide();
+    $('#editButtonEmail').show();
+    $('#cancelButtonEmail').show();
 }
 
 function disableEdit() {
@@ -375,6 +396,13 @@ function disableEdit() {
       $('#cancelButton').hide();
       $("#triggerEdit").click(function() {
         enableEdit();
+      });
+
+
+      $('#editButtonEmail').hide();
+      $('#cancelButtonEmail').hide();
+      $("#triggerEditEmail").click(function() {
+        enableEditEmail();
       });
   });
 </script>

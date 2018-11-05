@@ -12,9 +12,9 @@
 
       <div class="row">
         <!-- Button trigger modal -->
-        <a class="btn btn-secondary btn-sm" href="{{url('create-trade')}}">
+        <!-- <a class="btn btn-secondary btn-sm" href="{{url('create-trade')}}">
           Create Trade
-        </a>
+        </a> -->
       </div>
 
       <hr>
@@ -37,7 +37,7 @@
                         <td>{{$trade->ticker}}</td>
                         <td>{{$trade->volume}}</td>
                         <td>
-                          <a href="{{url('trade/'.$trade->id)}}" class="btn btn-secondary">Stock Status</a>
+                          <a href="{{url('trade/'.$trade->id)}}" class="btn btn-secondary">Trade Status</a>
                         </td>
                       </tr>
                   @endforeach

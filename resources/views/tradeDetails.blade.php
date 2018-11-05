@@ -16,6 +16,63 @@
             <div class="card-body">
               <h1>{{$trade->company}}: {{$trade->ticker}}</h1>
               <h4>Owner: {{$trade->client->fullname}}</h4>
+
+              <hr>
+
+              <div class="row">
+                <div class="col-6">
+                  <h4>Current Stock Price</h4>
+                  <p><span v-cloak>@{{close}}</span></p>
+                </div>
+
+                <div class="col-6">
+                  <h4>Quantity</h4>
+                  <p>{{$trade->volume}}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <h4>Initial Investment</h4>
+                  <p class="initial_value">{{$trade->initial_investment_value}}</p>
+                </div>
+
+                <div class="col-6">
+                  <h4>Current Investment Value</h4>
+                  <p><span v-cloak>@{{current_value}}</span></p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <h4>Profit</h4>
+                  <p><span v-cloak>@{{profit}}</span></p>
+                </div>
+
+                <div class="col-6">
+                  <h4>Gain Percentage</h4>
+                  <p class="colorize"><span v-cloak>@{{gain_percentage}}%</span></p>
+                </div>
+              </div>
+              <!-- <div class="">
+                <hr>
+
+                <h1>Trade History</h1>
+
+                <div class="row">
+
+                  <div class="col-6">
+                    <h4>Profit</h4>
+                    <p><span v-cloak>@{{profit}}</span></p>
+                  </div>
+
+                  <div class="col-6">
+                    <h4>Gain Percentage</h4>
+                    <p><span v-cloak>@{{gain_percentage}}%</span></p>
+                  </div>
+                </div>
+              </div> -->
+
             </div>
           </div>
         </div>
@@ -23,8 +80,8 @@
         <div class="row">
           <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
             <div class="card-body">
-              <h1>Trade Details</h1>
-              <p>Date Invested: {{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</p>
+              <h1>Tabular Details</h1>
+              <p>Buy Date: {{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</p>
 
 
 
@@ -46,7 +103,7 @@
                                 <th>Initial Investment</th>
                                 <th>Current Value</th>
                                 <th>Profit</th>
-                                <th>Date Invested</th>
+                                <th>Gain</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -58,7 +115,7 @@
                                 <td class="initial_value">{{$trade->initial_investment_value}}</td>
                                 <td><span v-cloak>@{{current_value}}</span></td>
                                 <td><span v-cloak>@{{profit}}</span></td>
-                                <td>{{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</td>
+                                <td><span v-cloak>@{{gain_percentage}}%</span></td>
                               </tr>
                             </tbody>
                           </table>
@@ -75,10 +132,28 @@
         </div>
 
         <div class="row">
+          <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
+            <div class="card-body">
+              <h1>Trade History</h1>
+              <div class="row">
+                <div class="col-4">
+                  <h3>Buy Date</h3>
+                  <p>{{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</p>
+                </div>
 
+                <div class="col-4">
+                  <h3>Sell Date</h3>
+                  <p>{{  $trade->sell_date === null ? "--" : \Carbon\Carbon::parse($trade->sell_date)->format('m/d/Y') }}</p>
+                </div>
+
+                <div class="col-4">
+                  <h3>Stock Status</h3>
+                  <p>{{$trade->status}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-
 
       </div>
   </main>
@@ -135,6 +210,7 @@ $( document ).ready(function() {
                 });
                 current_value = value2["4. close"] * "{{$trade->volume}}";
                 profit = (current_value - "{{$trade->initial_investment_value}}") * "{{$trade->volume}}";
+                gain_percentage = (profit / "{{$trade->initial_investment_value}}") * 100;
                 var app6 = new Vue({
                 el: '#app-6',
                 data: {
@@ -145,6 +221,7 @@ $( document ).ready(function() {
                   volume: formatDollar(parseFloat(value2["5. volume"])),
                   current_value: formatDollar(parseFloat(current_value)),
                   profit: formatDollar(profit),
+                  gain_percentage: gain_percentage,
                 }
               });
 
@@ -158,6 +235,19 @@ $( document ).ready(function() {
         initial_value = $(".initial_value").text();
         initial_value = formatDollar(parseFloat(initial_value));
         $(".initial_value").text(initial_value);
+
+        if(gain_percentage == 0)
+        {
+          $(".colorize").addClass("zero");
+        }
+        else if(gain_percentage > 0)
+        {
+          $(".colorize").addClass("gain");
+        }
+        else if(gain_percentage < 0)
+        {
+          $(".colorize").addClass("loss");
+        }
     }});
 });
 </script>

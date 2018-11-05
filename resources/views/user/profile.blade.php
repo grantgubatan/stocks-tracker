@@ -342,7 +342,7 @@
 
                                 <div class="form-group row">
                                   <div class="offset-4 col-8">
-                                    <button id="triggerEdit" type="button" class="btn btn-secondary">Edit Profile</button>
+                                    <!-- <button id="triggerEdit" type="button" class="btn btn-secondary">Edit Profile</button> -->
                                     <button type="submit" id="editButton" type="button" class="btn btn-default">Update Profile</button>
                                     <button id="cancelButton" type="button" class="btn btn-secondary" onclick="disableEdit()">Cancel</button>
                                   </div>

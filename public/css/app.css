@@ -709,3 +709,25 @@ input {
     border-radius: 0px !important;
     border: 1px solid #2b2b2b1a !important;
 }
+
+
+.loss
+{
+  background: #ff4a68;
+  color: white;
+  padding: 10px;
+}
+
+.gain
+{
+  background: #3cbc98;
+  color: white;
+  padding: 10px;
+}
+
+.zero
+{
+  background: #dadde0;
+  color: white;
+  padding: 10px;
+}

@@ -301,6 +301,12 @@
                   <input type="radio" name="td" value="yes"  required> YES
                   <input type="radio" name="td" value="no"  required> NO
                 </div>
+
+
+                <div class="">
+                  <label for="">Account Balance ($)</label>
+                  <input type="number" name="account_balance" value="" class="form-control" placeholder="Account Balance" min="0" required>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Create Client</button>

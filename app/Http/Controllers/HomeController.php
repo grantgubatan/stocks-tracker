@@ -11,6 +11,7 @@ use Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -57,7 +58,7 @@ class HomeController extends Controller
       $client->occupation = $request->oc;
       $client->leadsource = $request->ls;
       $client->traded = $request->td;
-
+      $client->account_balance = $request->account_balance;
 
       $random_string = str_random(8);
 
@@ -128,7 +129,6 @@ class HomeController extends Controller
     {
       $client = Client::findOrFail($request->id);
       $client->fullname = $request->fullname;
-      $client->email = $request->email;
       $client->email2 = $request->email2;
       $client->phone = $request->phone;
       $client->phone2 = $request->phone2;
@@ -140,9 +140,54 @@ class HomeController extends Controller
 
       $user = User::findOrFail($client->user->id);
       $user->name = $client->fullname;
-      $user->email = $client->email;
       $user->save();
 
+      $notification = array(
+        "message" => "Success!",
+        "alert-type" => "success"
+      );
+
+      return back()->with($notification);
+    }
+
+    public function ClientEditEmail(Request $request)
+    {
+      if (User::where('email', '=', Input::get('email'))->exists())
+      {
+          $notification = array(
+            "message" => "Email Already Registered!",
+            "alert-type" => "error"
+          );
+
+          return back()->with($notification);
+      }
+      else
+      {
+        $client = Client::findOrFail($request->id);
+        $client->email = $request->email;
+        $client->save();
+
+
+        $user = User::findOrFail($client->user->id);
+        $user->email = $client->email;
+        $user->save();
+
+        $notification = array(
+          "message" => "Success!",
+          "alert-type" => "success"
+        );
+
+        return back()->with($notification);
+      }
+    }
+
+
+
+    public function editBalance(Request $request)
+    {
+      $client = Client::findOrFail($request->id);
+      $client->account_balance = $request->account_balance;
+      $client->save();
       $notification = array(
         "message" => "Success!",
         "alert-type" => "success"
@@ -162,6 +207,7 @@ class HomeController extends Controller
         $trade->volume = $request->qty;
         $trade->initial_stock_price = $request->stock_price;
         $trade->initial_investment_value = $request->stock_value;
+        $trade->status = "Bought";
         $trade->save();
         return "ok";
       }
@@ -235,7 +281,12 @@ class HomeController extends Controller
 
     public function settings()
     {
-      return view('settings');
+      $admins = User::where('role', '=', 'admin')
+                    ->where('id', '!=', 1)
+                    ->get();
+
+      return view('settings')
+            ->with('admins', $admins);
     }
 
     public function adminEditProfile(Request $request)
@@ -314,6 +365,21 @@ class HomeController extends Controller
        }
 
      }
+
+    }
+
+    public function adminDelete(Request $request)
+    {
+      $user = User::find($request->id);
+
+      $user->delete();
+
+      $notification = array(
+        "message" => "Admin Account Deleted",
+        "alert-type" => "error"
+      );
+
+      return back()->with($notification);
 
     }
 }

@@ -66,6 +66,74 @@
               </div>
           </div>
         </div>
+
+        <br>
+
+        <div class="row">
+          <div class="card col-12">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <h3>Admin Accounts</h3>
+                  <table class="table table-striped" id="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                        <th>Commands</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($admins as $admin)
+                          <tr>
+                            <td>{{$admin->name}}</td>
+                            <td>{{$admin->email}}</td>
+                            <td>{{ \Carbon\Carbon::parse($admin->created_at)->format('m/d/Y')}}</td>
+                            <td>
+
+                              <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editAdmin{{$admin->id}}">
+                                Delete Account
+                              </button>
+
+
+                              <!-- Modal -->
+                              <div class="modal fade" id="editAdmin{{$admin->id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <form class="" action="{{url('admin-delete')}}" method="POST">
+                                      @csrf
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete Profile {{$admin->name}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="">
+                                          <h2>Are you sure?</h2>
+                                          <input type="hidden" name="id" value="{{$admin->id}}" class="form-control">
+                                        </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="submit" class="btn btn-secondary btn-sm">Confirm Deletion</button>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            </td>
+                          </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+
       </div>
   </main>
 <!-- page-content" -->
@@ -90,8 +158,14 @@ function disableEdit() {
   {
       $('#editButton').hide();
       $('#cancelButton').hide();
-      $("#triggerEdit").click(function() {
+      $("#triggerEdit").click(function()
+      {
         enableEdit();
+      });
+
+      $('#admin-table').DataTable(
+      {
+        "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>'
       });
   });
 </script>

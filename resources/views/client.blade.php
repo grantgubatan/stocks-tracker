@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container page-wrapper chiller-theme toggled">
+<div class="container page-wrapper chiller-theme toggled" id="app-6">
   <!-- sidebar-wrapper  -->
   <main class="page-content">
       <div class="">
@@ -18,8 +18,12 @@
                   <h3>{{$client->fullname}}</h3>
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Stocks Owned: {{$client->trades->count()}}</h5>
+                  <h5 class="card-title">
+                    Account Balance:
+                    <span class="account_balance" v-cloak>@{{account_balance}}</span>
+                  </h5>
                   <p class="card-text">Occupation: {{$client->occupation}}</p>
+                  <p class="card-text">Stocks Owned: {{$client->trades->count()}}</p>
                   <!-- Button trigger modal -->
                   <a href="{{url('create-trade/client/'. $client->id)}}" class="btn btn-secondary btn-sm">
                     Create Trade
@@ -32,6 +36,13 @@
                     View Profile
                   </button>
                   @include('partials.viewClientProfile')
+
+
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editBalance">
+                    Edit Balance
+                  </button>
+                  @include('partials.editBalance')
                 </div>
               </div>
             </div>
@@ -58,7 +69,7 @@
                         <td>{{$trade->ticker}}</td>
                         <td>{{$trade->volume}}</td>
                         <td>
-                          <a href="{{url('trade/'.$trade->id)}}" class="btn btn-secondary">Stock Status</a>
+                          <a href="{{url('trade/'.$trade->id)}}" class="btn btn-secondary">Trade Status</a>
                         </td>
                       </tr>
                   @endforeach
@@ -73,11 +84,28 @@
 
 <script type="text/javascript">
 
+function formatDollar(num) {
+  var p = num.toFixed(2).split(".");
+  return "$" + p[0].split("").reverse().reduce(function(acc, num, i, orig) {
+      return  num=="-" ? acc : num + (i && !(i % 3) ? "," : "") + acc;
+  }, "") + "." + p[1];
+}
+
+var app6 = new Vue({
+el: '#app-6',
+data: {
+  account_balance: formatDollar(parseFloat("{{$client->account_balance}}")),
+}
+});
+
 $(document).ready(function() {
     $('#trades-table').DataTable({
     "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>'
+    });
+
+
+
 });
-} );
 
 
 </script>

@@ -29,6 +29,8 @@ Route::post('/client-add', 'HomeController@addClient')->name('client-add'); //AD
 Route::get('/client/{id}', 'HomeController@viewClient'); //VIEW CLIENT
 Route::post('/client-edit', 'HomeController@editClient')->name('client-edit'); //EDIT CLIENT
 Route::get('/create-trade/client/{id}', 'HomeController@adminCreateTrade');
+Route::post('/edit-balance', 'HomeController@editBalance')->name('edit-balance');
+Route::post('/client-edit-email', 'HomeController@ClientEditEmail')->name('client-edit-email');
 /* End Client */
 
 
@@ -47,3 +49,7 @@ Route::post('change-password','HomeController@changePassword')->name('change-pas
 
 /* NEWS */
 Route::get('/latest-news', 'HomeController@latestNews')->middleware('verified');
+
+
+/*ADMIN*/
+Route::post('/admin-delete', 'HomeController@adminDelete');
