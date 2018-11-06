@@ -16,7 +16,7 @@
 
                   </div>
                   <hr>
-                  <div class="loader-div" hidden style="margin-top:250px">
+                  <div class="loader-div" hidden style="margin-top:450px">
                     <div id="loader2">
                     </div>
                   </div>

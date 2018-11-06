@@ -79,7 +79,7 @@ class HomeController extends Controller
 
         Mail::send('mail', $data, function($message) use ($data)
               {
-                  $message->from('grantgubatan@gmail.com', "Dunn & Burchill");
+                  $message->from('dunnandburchillportal@gmail.com', "Dunn & Burchill");
                   $message->subject("Your Generated Password:");
                   $message->to($data["recipient"]);
               });
@@ -95,7 +95,8 @@ class HomeController extends Controller
           "alert-type" => "success"
         );
 
-        return back()->with($notification);
+        // return back()->with($notification);
+        return redirect('home')->with('notification', $notification);
       }
       catch (\Illuminate\Database\QueryException $e)
       {
@@ -334,7 +335,7 @@ class HomeController extends Controller
 
         Mail::send('mail', $data, function($message) use ($data)
               {
-                  $message->from('grantgubatan@gmail.com', "Dunn & Burchill");
+                  $message->from('dunnandburchillportal@gmail.com', "Dunn & Burchill");
                   $message->subject("Your Generated Password:");
                   $message->to($data["recipient"]);
               });

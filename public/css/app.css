@@ -731,3 +731,29 @@ input {
   color: white;
   padding: 10px;
 }
+
+.navbar-brand
+{
+  width: 20%;
+}
+
+.navbar-brand img
+{
+  width: 100%;
+}
+
+.page-wrapper
+{
+  margin-top: 150px !important;
+}
+
+
+body
+{
+  font-family: 'Raleway', Helvetica;
+}
+
+.btn
+{
+  border-radius: 0px;
+}

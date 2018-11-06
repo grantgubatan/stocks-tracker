@@ -19,10 +19,13 @@
               <h1>{{$trade->company}}: {{$trade->ticker}}</h1>
               <h4>Owner: {{$trade->client->fullname}}</h4>
               <div class="">
+
+                @if(Auth::user()->role == 'admin')
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sellTrade{{$trade->id}}">
                   Sell Trade
                 </button>
+                @endif
 
 
                 <!-- Modal -->

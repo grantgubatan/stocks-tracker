@@ -48,7 +48,7 @@
                                 <div class="form-group row">
                                   <label for="name" class="col-4 col-form-label">Email</label>
                                   <div class="col-8">
-                                    <input id="name" name="email" placeholder="Email" class="form-control here" type="email" value="{{Auth::user()->email}}" disabled>
+                                    <input id="email" name="email" placeholder="Email" class="form-control here" type="email" value="{{Auth::user()->email}}" disabled>
                                   </div>
                                 </div>
 
@@ -91,10 +91,12 @@
                             <td>{{ \Carbon\Carbon::parse($admin->created_at)->format('m/d/Y')}}</td>
                             <td>
 
+                              @if(Auth::user()->id === 1)
                               <!-- Button trigger modal -->
                               <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editAdmin{{$admin->id}}">
                                 Delete Account
                               </button>
+                              @endif
 
 
                               <!-- Modal -->

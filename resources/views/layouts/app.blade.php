@@ -22,7 +22,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -48,11 +48,11 @@
   </head>
   <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="z-index:1000">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="z-index:1000;position: fixed;width: 100%;">
             <div class="container">
-                <!-- <a class="navbar-brand" href="{{ url('/') }}">
-                    Client Portal
-                </a> -->
+                <a class="navbar-brand" href="{{ url('/') }}">
+                  <img src="{{ asset('logo-final4.png') }}" alt="">
+                </a>
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -72,11 +72,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 @if (Route::has('register'))
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 @endif
-                            </li>
+                            </li> -->
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
