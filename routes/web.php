@@ -19,12 +19,12 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-Route::get('/settings', 'HomeController@settings');
+Route::get('/settings', 'HomeController@settings')->middleware('checkRole');
 Route::post('/admin-edit', 'HomeController@adminEditProfile')->name('admin-edit'); //EDIT CLIENT
 Route::post('/admin-create', 'HomeController@adminCreate')->name('admin-create');
 
 /* Client */
-Route::get('/create-client', 'HomeController@addClientView');
+Route::get('/create-client', 'HomeController@addClientView')->middleware('checkRole');
 Route::post('/client-add', 'HomeController@addClient')->name('client-add'); //ADD CLIENT
 Route::get('/client/{id}', 'HomeController@viewClient'); //VIEW CLIENT
 Route::post('/client-edit', 'HomeController@editClient')->name('client-edit'); //EDIT CLIENT
