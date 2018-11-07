@@ -92,7 +92,7 @@
 
                 <div class="col-6">
                   <h4>Gain Percentage</h4>
-                  <p class="colorize"><span v-cloak>@{{gain_percentage}}%</span></p>
+                  <p class="colorize"><span v-cloak>@{{gain_percentage_decim}}%</span></p>
                 </div>
               </div>
             </div>
@@ -137,7 +137,7 @@
                                 <td class="initial_value">{{$trade->initial_investment_value}}</td>
                                 <td><span v-cloak>@{{current_value}}</span></td>
                                 <td><span v-cloak>@{{profit}}</span></td>
-                                <td><span v-cloak>@{{gain_percentage}}%</span></td>
+                                <td><span v-cloak>@{{gain_percentage_decim}}%</span></td>
                               </tr>
                             </tbody>
                           </table>
