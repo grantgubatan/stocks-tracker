@@ -273,21 +273,21 @@ class HomeController extends Controller
 
     public function tradeManager()
     {
-      // $trades = Trade::where('client_id', Auth::user()->client->id)->get();
-      // foreach ($trades as $trade)
-      // {
-      //   $api_data = Api::stock()->daily($trade->ticker);
-      //   $trade_data = reset($api_data["Time Series (Daily)"]); //changes
-      //   $trade->stock_price = number_format((float)$trade_data["4. close"], 2, '.', '');
-      //   $trade->current_value = $trade->stock_price * $trade->volume;
-      //   $trade->profit = $trade->current_value - $trade->initial_investment_value;
-      //   $trade->gain_percentage = number_format(($trade->profit / $trade->initial_investment_value) * 100, 2);
-      //
-      // }
-      //
-      // return view('user.trades')->with('trades', $trades);
-      $api_data = Api::stock()->daily('MSFT');
-      return dd($api_data);
+      $trades = Trade::where('client_id', Auth::user()->client->id)->get();
+      foreach ($trades as $trade)
+      {
+        $api_data = Api::stock()->daily($trade->ticker);
+        $trade_data = reset($api_data["Time Series (Daily)"]); //changes
+        $trade->stock_price = number_format((float)$trade_data["4. close"], 2, '.', '');
+        $trade->current_value = $trade->stock_price * $trade->volume;
+        $trade->profit = $trade->current_value - $trade->initial_investment_value;
+        $trade->gain_percentage = number_format(($trade->profit / $trade->initial_investment_value) * 100, 2);
+
+      }
+
+      return view('user.trades')->with('trades', $trades);
+      // $api_data = Api::stock()->daily('MSFT');
+      // return dd($api_data);
     }
 
     public function addClientView()
