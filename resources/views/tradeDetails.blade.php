@@ -86,7 +86,7 @@
 
               <div class="row">
                 <div class="col-6">
-                  <h4>Profit</h4>
+                  <h4>Profit / Loss</h4>
                   <p><span v-cloak>@{{profit}}</span></p>
                 </div>
 
@@ -124,7 +124,7 @@
                                 <th>Stock Price</th>
                                 <th>Initial Investment</th>
                                 <th>Current Value</th>
-                                <th>Profit</th>
+                                <th>Profit / Loss</th>
                                 <th>Gain</th>
                               </tr>
                             </thead>
@@ -246,7 +246,7 @@ $( document ).ready(function() {
                   volume: formatDollar(parseFloat(value2["5. volume"])),
                   current_value: formatDollar(parseFloat(current_value)),
                   current_value_decim: current_value_decim.toFixed(2),
-                  profit: formatDollar(profit),
+                  profit: profit,
                   profit_decim: profit.toFixed(2),
                   gain_percentage: gain_percentage,
                   gain_percentage_decim: gain_percentage.toFixed(2),
@@ -310,7 +310,7 @@ $( document ).ready(function() {
 
                     <div class="row">
                       <div class="col-6">
-                        <h4>Profit</h4>
+                        <h4>Profit / Loss</h4>
                         <p id="profit" data-profit="{{$trade->profit}}">{{$trade->profit}}</p>
                       </div>
 

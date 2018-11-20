@@ -56,3 +56,7 @@ Route::get('/latest-news', 'HomeController@latestNews')->middleware('verified');
 
 /*ADMIN*/
 Route::post('/admin-delete', 'HomeController@adminDelete');
+
+
+/*API*/
+Route::get('/user-stocks', 'HomeController@userStocks');
