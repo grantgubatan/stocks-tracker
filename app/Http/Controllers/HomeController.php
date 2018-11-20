@@ -277,7 +277,7 @@ class HomeController extends Controller
       foreach ($trades as $trade)
       {
         $api_data = Api::stock()->daily($trade->ticker);
-        $trade_data = reset($api_data["Time Series (Daily)"]);
+        $trade_data = reset($api_data["Time Series (Daily)"]); //changes
         $trade->stock_price = number_format((float)$trade_data["4. close"], 2, '.', '');
         $trade->current_value = $trade->stock_price * $trade->volume;
         $trade->profit = $trade->current_value - $trade->initial_investment_value;
