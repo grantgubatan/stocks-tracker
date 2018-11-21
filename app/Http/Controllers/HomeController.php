@@ -61,6 +61,20 @@ class HomeController extends Controller
       $client->traded = $request->td;
       $client->account_balance = $request->account_balance;
 
+      $client->account_number = $request->account_number;
+      $client->account_type = $request->account_type;
+      $client->salutation = $request->salutation;
+      $client->address = $request->address;
+      $client->mobile_number = $request->mobile_number;
+      $client->home_number = $request->home_number;
+      $client->business_number = $request->business_number;
+      $client->dob = $request->dob;
+      $client->pob = $request->pob;
+      $client->mstatus = $request->mstatus;
+      $client->empstatus = $request->empstatus;
+      $client->company_name = $request->company_name;
+      $client->company_address = $request->company_address;
+
       $random_string = str_random(8);
 
 
@@ -273,7 +287,7 @@ class HomeController extends Controller
 
     public function tradeManager()
     {
-      $trades = Trade::where('client_id', Auth::user()->client->id)->get();
+      $trades = Trade::where('client_id', Auth::user()->client->id)->limit(3)->get();
       foreach ($trades as $trade)
       {
         $api_data = Api::stock()->daily($trade->ticker);

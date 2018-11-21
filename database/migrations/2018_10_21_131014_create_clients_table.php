@@ -25,7 +25,20 @@ class CreateClientsTable extends Migration
             $table->string('occupation')->nullable();
             $table->string('leadsource')->nullable();
             $table->string('traded')->nullable();
-            $table->decimal('account_balance', 10, 2);
+            $table->decimal('account_balance', 10, 2)->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('account_type')->nullable();
+            $table->string('salutation')->nullable();
+            $table->string('address')->nullable();
+            $table->string('mobile_number')->nullable();
+            $table->string('home_number')->nullable();
+            $table->string('business_number')->nullable();
+            $table->dateTime('dob')->nullable();
+            $table->string('pob')->nullable();
+            $table->string('mstatus')->nullable();
+            $table->string('empstatus')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('company_address')->nullable();
             $table->timestamps();
         });
     }

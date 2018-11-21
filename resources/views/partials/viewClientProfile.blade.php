@@ -1,6 +1,11 @@
+<style media="screen">
+.modal-lg {
+  max-width: 80% !important;
+}
+</style>
 <!-- Modal -->
 <div class="modal fade" id="viewClientProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document" style="width:900px !important">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Client Profile</h5>

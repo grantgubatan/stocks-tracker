@@ -6,37 +6,46 @@
   <!-- sidebar-wrapper  -->
   <main class="page-content">
       <div class="">
+        <h1 style="font-weight:bold">Create Client</h1>
         <div class="row">
           <div class="col-12">
             <form class="" action="{{url('client-add')}}" method="POST">
               @csrf
               <div class="modal-body">
                 <div class="">
-                  <label for="">Full Name</label>
+                  <label for="">Full Name (required)</label>
                   <input type="text" name="fullname" value="" class="form-control" placeholder="Full Name" required>
                 </div>
-                <div class="">
-                  <label for="">Email</label>
-                  <input type="email" name="em" value="" class="form-control" placeholder="Email" required>
+                <div class="row">
+                  <div class="col">
+                    <label for="">Email (required)</label>
+                    <input type="email" name="em" value="" class="form-control" placeholder="Email" required>
+                  </div>
+
+                  <div class="col">
+                    <label for="">Alternate Email</label>
+                    <input type="email" name="em2" value="" class="form-control" placeholder="Alternate Email">
+                  </div>
                 </div>
 
-                <div class="">
-                  <label for="">Alternate Email</label>
-                  <input type="email" name="em2" value="" class="form-control" placeholder="Alternate Email" required>
+
+
+                <div class="row">
+                  <div class="col">
+                    <label for="">Phone Number (required)</label>
+                    <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number" required>
+                  </div>
+
+                  <div class="col">
+                    <label for="">Alternate Phone Number</label>
+                    <input type="text" name="phone2" value="" class="form-control" placeholder="Alternate Phone Number">
+                  </div>
                 </div>
 
-                <div class="">
-                  <label for="">Phone Number</label>
-                  <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number" required>
-                </div>
+
 
                 <div class="">
-                  <label for="">Alternate Phone Number</label>
-                  <input type="text" name="phone2" value="" class="form-control" placeholder="Alternate Phone Number" required>
-                </div>
-
-                <div class="">
-                  <label for="">Country</label>
+                  <label for="">Country (required)</label>
                   <select class="form-control" name="country" required>
                     <option value="">Select Country</option>
                     <option value="Afghanistan">Afghanistan</option>
@@ -286,26 +295,127 @@
                     </select>
                 </div>
 
-                <div class="">
-                  <label for="">Occupation</label>
-                  <input type="text" name="oc" value="" class="form-control" placeholder="Occupation" required>
+                <div class="row">
+                  <div class="col">
+                    <label for="">Occupation (required)</label>
+                    <input type="text" name="oc" value="" class="form-control" placeholder="Occupation" required>
+                  </div>
+
+                  <div class="col">
+                    <label for="">Lead Source</label>
+                    <input type="text" name="ls" value="" class="form-control" placeholder="Lead Source">
+                  </div>
                 </div>
 
-                <div class="">
-                  <label for="">Lead Source</label>
-                  <input type="text" name="ls" value="" class="form-control" placeholder="Lead Source" required>
-                </div>
 
+                <hr>
                 <div class="">
-                  <label for="">Traded Before?</label>
+                  <label for="">Traded Before? (required)</label>
                   <input type="radio" name="td" value="yes"  required> YES
                   <input type="radio" name="td" value="no"  required> NO
+
+                  <hr>
                 </div>
 
 
                 <div class="">
                   <label for="">Account Balance ($)</label>
-                  <input type="number" name="account_balance" value="" class="form-control" placeholder="Account Balance" min="0" required>
+                  <input type="number" name="account_balance" value="" class="form-control" placeholder="Account Balance" min="0">
+                </div>
+
+                <div class="">
+                  <label for="">9-Digit Account Number (required)</label>
+                  <input type="text" name="account_number" value="" class="form-control" placeholder="Account Number">
+                </div>
+
+                <div class="">
+                  <label for="">Type of Account (required)</label>
+                  <select class="form-control" name="account_type" required>
+                    <option value="">Select Account Type</option>
+                    <option value="Individual">Individual</option>
+                    <option value="Joint">Joint</option>
+                    <option value="Corporate">Corporate</option>
+                  </select>
+                </div>
+
+                <div class="">
+                  <label for="">Salutation (required)</label>
+                  <select class="form-control" name="salutation" required>
+                    <option value="">Select Salutation</option>
+                    <option value="Mr">Mr</option>
+                    <option value="Individual">Mrs</option>
+                    <option value="Joint">Miss</option>
+                  </select>
+                </div>
+
+                <div class="">
+                  <label for="">Address (required)</label>
+                  <input type="text" name="address" value="" class="form-control" placeholder="Address">
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label for="">Mobile Number</label>
+                    <input type="text" name="mobile_number" value="" class="form-control" placeholder="Mobile Number">
+                  </div>
+
+                  <div class="col">
+                    <label for="">Home Number</label>
+                    <input type="text" name="home_number" value="" class="form-control" placeholder="Home Number">
+                  </div>
+
+                  <div class="col">
+                    <label for="">Business</label>
+                    <input type="text" name="business_number" value="" class="form-control" placeholder="Business Number">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label for="">Date of birth</label>
+                    <input type="date" name="dob" value="" class="form-control" placeholder="Date of birth">
+                  </div>
+
+                  <div class="col">
+                    <label for="">Place of Birth</label>
+                    <input type="text" name="pob" value="" class="form-control" placeholder="Place of Birth">
+                  </div>
+
+                  <div class="col">
+                    <label for="">Marital Status (required)</label>
+                    <select class="form-control" name="mstatus" required>
+                      <option value="">Select Marital Status</option>
+                      <option value="Single/Unmarried">Single/Unmarried</option>
+                      <option value="Individual">Married</option>
+                      <option value="Divorced">Divorced</option>
+                      <option value="Widowed">Widowed</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label for="">Employment Status (required)</label>
+                    <select class="form-control" name="empstatus" required>
+                      <option value="">Select Employment Status</option>
+                      <option value="Employed">Employed</option>
+                      <option value="Self Employed">Self Employed</option>
+                      <option value="Company Owner">Company Owner</option>
+                      <option value="Retired">Retired</option>
+                      <option value="Student">Student</option>
+                      <option value="Unemployed">Unemployed</option>
+                    </select>
+                  </div>
+
+                  <div class="col">
+                    <label for="">Company Name</label>
+                    <input type="text" name="company_name" value="" class="form-control" placeholder="Company Name">
+                  </div>
+
+                  <div class="col">
+                    <label for="">Company Address</label>
+                    <input type="text" name="company_address" value="" class="form-control" placeholder="Company Address">
+                  </div>
                 </div>
               </div>
               <div class="modal-footer">
