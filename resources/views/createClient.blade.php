@@ -6,19 +6,19 @@
   <!-- sidebar-wrapper  -->
   <main class="page-content">
       <div class="">
-        <h1 class="">Create Client</h1>
+        <h1 class="blue-header"> <i data-feather="user-plus"></i> Create Client</h1>
         <div class="row">
           <div class="col-12">
             <form class="" action="{{url('client-add')}}" method="POST">
               @csrf
               <div class="modal-body">
                 <div class="">
-                  <label for="">Full Name (required)</label>
+                  <label for="">Full Name <span class="blue-header">(required)</span></label>
                   <input type="text" name="fullname" value="" class="form-control" placeholder="Full Name" required>
                 </div>
                 <div class="row">
                   <div class="col">
-                    <label for="">Email (required)</label>
+                    <label for="">Email <span class="blue-header">(required)</span></label>
                     <input type="email" name="em" value="" class="form-control" placeholder="Email" required>
                   </div>
 
@@ -32,7 +32,7 @@
 
                 <div class="row">
                   <div class="col">
-                    <label for="">Phone Number (required)</label>
+                    <label for="">Phone Number <span class="blue-header">(required)</span></label>
                     <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number" required>
                   </div>
 
@@ -45,7 +45,7 @@
 
 
                 <div class="">
-                  <label for="">Country (required)</label>
+                  <label for="">Country <span class="blue-header">(required)</span></label>
                   <select class="form-control" name="country" required>
                     <option value="">Select Country</option>
                     <option value="Afghanistan">Afghanistan</option>
@@ -297,7 +297,7 @@
 
                 <div class="row">
                   <div class="col">
-                    <label for="">Occupation (required)</label>
+                    <label for="">Occupation <span class="blue-header">(required)</span></label>
                     <input type="text" name="oc" value="" class="form-control" placeholder="Occupation" required>
                   </div>
 
@@ -310,7 +310,7 @@
 
                 <hr>
                 <div class="">
-                  <label for="">Traded Before? (required)</label>
+                  <label for="">Traded Before? <span class="blue-header">(required)</span></label>
                   <input type="radio" name="td" value="yes"  required> YES
                   <input type="radio" name="td" value="no"  required> NO
 
@@ -324,12 +324,12 @@
                 </div>
 
                 <div class="">
-                  <label for="">9-Digit Account Number (required)</label>
+                  <label for="">9-Digit Account Number <span class="blue-header">(required)</span></label>
                   <input type="text" name="account_number" value="" class="form-control" placeholder="Account Number">
                 </div>
 
                 <div class="">
-                  <label for="">Type of Account (required)</label>
+                  <label for="">Type of Account <span class="blue-header">(required)</span></label>
                   <select class="form-control" name="account_type" required>
                     <option value="">Select Account Type</option>
                     <option value="Individual">Individual</option>
@@ -339,7 +339,7 @@
                 </div>
 
                 <div class="">
-                  <label for="">Salutation (required)</label>
+                  <label for="">Salutation <span class="blue-header">(required)</span></label>
                   <select class="form-control" name="salutation" required>
                     <option value="">Select Salutation</option>
                     <option value="Mr">Mr</option>
@@ -349,7 +349,7 @@
                 </div>
 
                 <div class="">
-                  <label for="">Address (required)</label>
+                  <label for="">Address <span class="blue-header">(required)</span></label>
                   <input type="text" name="address" value="" class="form-control" placeholder="Address">
                 </div>
 
@@ -382,7 +382,7 @@
                   </div>
 
                   <div class="col">
-                    <label for="">Marital Status (required)</label>
+                    <label for="">Marital Status <span class="blue-header">(required)</span></label>
                     <select class="form-control" name="mstatus" required>
                       <option value="">Select Marital Status</option>
                       <option value="Single/Unmarried">Single/Unmarried</option>
@@ -395,7 +395,7 @@
 
                 <div class="row">
                   <div class="col">
-                    <label for="">Employment Status (required)</label>
+                    <label for="">Employment Status <span class="blue-header">(required)</span></label>
                     <select class="form-control" name="empstatus" required>
                       <option value="">Select Employment Status</option>
                       <option value="Employed">Employed</option>
@@ -425,7 +425,7 @@
 
                   <div class="row">
                     <div class="col">
-                      <label for="">Salutation (required)</label>
+                      <label for="">Salutation <span class="blue-header">(required)</span></label>
                       <select class="form-control" name="secondary_salutation">
                         <option value="">Select Salutation</option>
                         <option value="Mr">Mr</option>
@@ -479,7 +479,7 @@
                     </div>
 
                     <div class="col">
-                      <label for="">Country (required)</label>
+                      <label for="">Country</label>
                       <select class="form-control" name="secondary_country">
                         <option value="">Select Country</option>
                         <option value="Afghanistan">Afghanistan</option>
@@ -732,7 +732,7 @@
 
                   <div class="row">
                     <div class="col">
-                      <label for="">Marital Status (required)</label>
+                      <label for="">Marital Status</label>
                       <select class="form-control" name="secondary_mstatus">
                         <option value="">Select Marital Status</option>
                         <option value="Single/Unmarried">Single/Unmarried</option>

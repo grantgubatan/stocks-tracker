@@ -31,6 +31,7 @@ Route::post('/client-edit', 'HomeController@editClient')->name('client-edit'); /
 Route::get('/create-trade/client/{id}', 'HomeController@adminCreateTrade');
 Route::post('/edit-balance', 'HomeController@editBalance')->name('edit-balance');
 Route::post('/client-edit-email', 'HomeController@ClientEditEmail')->name('client-edit-email');
+Route::post('/client-edit-secondary', 'HomeController@ClientEditSecondary')->name('client-edit-secondary');
 Route::post('/client-delete', 'HomeController@clientDelete');
 /* End Client */
 

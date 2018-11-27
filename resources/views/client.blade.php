@@ -7,7 +7,7 @@
   <main class="page-content">
       <div class="">
         <div class="row">
-          <h1>MANAGE CLIENT</h1>
+          <h1 class="blue-header"> <i data-feather="user-check"></i> MANAGE CLIENT</h1>
         </div>
         <br>
 

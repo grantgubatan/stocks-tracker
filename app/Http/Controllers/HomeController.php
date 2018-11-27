@@ -173,11 +173,54 @@ class HomeController extends Controller
       $client->occupation = $request->occupation;
       $client->leadsource = $request->leadsource;
       $client->traded = $request->traded;
+
+
+
+      $client->account_number = $request->account_number;
+      $client->account_type = $request->account_type;
+      $client->salutation = $request->salutation;
+      $client->address = $request->address;
+      $client->mobile_number = $request->mobile_number;
+      $client->home_number = $request->home_number;
+      $client->business_number = $request->business_number;
+      $client->dob = $request->dob;
+      $client->pob = $request->pob;
+      $client->mstatus = $request->mstatus;
+      $client->empstatus = $request->empstatus;
+      $client->company_name = $request->company_name;
+      $client->company_address = $request->company_address;
+
       $client->save();
 
       $user = User::findOrFail($client->user->id);
       $user->name = $client->fullname;
       $user->save();
+
+      $notification = array(
+        "message" => "Success!",
+        "alert-type" => "success"
+      );
+
+      return back()->with($notification);
+    }
+
+    public function ClientEditSecondary(Request $request)
+    {
+      $client = Client::findOrFail($request->id);
+
+      $client->secondary_salutation = $request->secondary_salutation;
+      $client->secondary_fullname = $request->secondary_fullname;
+      $client->secondary_address = $request->secondary_address;
+      $client->secondary_primary_number = $request->secondary_primary_number;
+      $client->secondary_mobile_number = $request->secondary_mobile_number;
+      $client->secondary_home_number = $request->secondary_home_number;
+      $client->secondary_business_number = $request->secondary_business_number;
+      $client->secondary_dob = $request->secondary_dob;
+      $client->secondary_pob = $request->secondary_pob;
+      $client->secondary_country = $request->secondary_country;
+      $client->secondary_mstatus = $request->secondary_mstatus;
+
+      $client->save();
 
       $notification = array(
         "message" => "Success!",

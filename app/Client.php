@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     //
-    protected $dates = ['dob'];
+    protected $dates = ['dob', 'secondary_dob'];
     public function trades()
     {
       return $this->hasMany(Trade::class);

@@ -1,13 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style media="screen">
+  #trades-table tr
+  {
+    font-size: 10px;
+  }
+</style>
 <div class="container page-wrapper chiller-theme toggled" id="app-6">
   <!-- sidebar-wrapper  -->
   <main class="page-content">
       <div class="">
         <div class="row">
-          <h1> <i data-feather="align-left"></i> My Stocks</h1>
+          <h1 class="blue-header"> <i data-feather="align-left"></i> My Stocks</h1>
         </div>
 
       <div class="row">

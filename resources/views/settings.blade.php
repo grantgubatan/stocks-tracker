@@ -7,7 +7,7 @@
   <main class="page-content">
       <div class="">
         <div class="row">
-          <h1>Admin Settings</h1>
+          <h1 class="blue-header"> <i data-feather="user"></i> Admin Settings</h1>
         </div>
 
         <div class="row">
@@ -15,8 +15,8 @@
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <h1>Admin Profile</h1>
-                          <h3>{{Auth::user()->name}}</h3>
+                          <h3 class="blue-header">Admin Profile</h33>
+                          <h4>{{Auth::user()->name}}</h4>
                           <div class="row">
                             <div class="col">
                               <!-- Button trigger modal -->
@@ -73,7 +73,7 @@
           <div class="card col-12">
               <div class="card-body">
                 <div class="table-responsive">
-                  <h3>Admin Accounts</h3>
+                  <h4 class="blue-header">Admin Accounts</h4>
                   <table class="table table-striped" id="admin-table">
                     <thead>
                       <tr>
