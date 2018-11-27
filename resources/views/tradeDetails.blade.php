@@ -62,6 +62,19 @@
 
               <div class="row">
                 <div class="col-6">
+                  <h4>Per Share Purchase Price</h4>
+                  <p>${{$trade->initial_stock_price}}</p>
+                </div>
+
+                <div class="col-6">
+
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="row">
+                <div class="col-6">
                   <h4>Current Stock Price</h4>
                   <p><span v-cloak>@{{close}}</span></p>
                 </div>
@@ -102,7 +115,7 @@
         <div class="row">
           <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
             <div class="card-body">
-              <h1>Tabular Details</h1>
+              <h1>Trade Details</h1>
               <p>Buy Date: {{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</p>
 
 

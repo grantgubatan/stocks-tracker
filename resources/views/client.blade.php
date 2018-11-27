@@ -13,7 +13,7 @@
 
         <div class="row">
             <div class="col-12">
-              <div class="card">
+              <div class="card shadow-sm p-3 mb-5 bg-white rounded">
                 <div class="card-header">
                   <h3>{{$client->fullname}}</h3>
                 </div>

@@ -11,7 +11,7 @@
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <h1>My Profile</h1>
+                          <h1> <i data-feather="users"></i> My Profile</h1>
                           <h3>{{Auth::user()->client->fullname}}</h3>
                           <div>
                             <!-- Button trigger modal -->

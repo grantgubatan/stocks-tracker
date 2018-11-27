@@ -6,10 +6,7 @@
                     <div></div>
                     <div></div>
                 </div>
-                <div class="sidebar-brand" style="margin-top:50px;">
-
-                </div>
-                <div class="sidebar-header">
+                <div class="sidebar-header" style="margin-top:60px;">
                     <div class="user-pic">
                         <img class="img-responsive img-rounded" src="{{ asset('user.png') }}" alt="User picture">
                     </div>
@@ -40,25 +37,30 @@
                 <!-- sidebar-search  -->
                 <div class="sidebar-menu">
                     <ul>
-                        <li class="header-menu">
-                            <span>General</span>
-                        </li>
+                      <li class="header-menu">
+                          <span>General</span>
+                      </li>
+                      <hr>
 
                         <li class="sidebar-dropdown">
                             <a href="{{url('create-client')}}">
-                                <span>Create Clients</span>
+                               <i data-feather="user-plus"></i>  <span> Create Clients</span>
                             </a>
                         </li>
+
+                        <hr>
 
                         <li class="sidebar-dropdown">
                             <a href="{{url('home')}}">
-                                <span>Manage Clients</span>
+                                <i data-feather="users"></i> <span> Manage Clients</span>
                             </a>
                         </li>
 
+                        <hr>
+
                         <li class="sidebar-dropdown">
                             <a href="{{url('settings')}}">
-                                <span>Admin Settings</span>
+                                <i data-feather="settings"></i> <span>Admin Settings</span>
                             </a>
                         </li>
 
@@ -67,10 +69,10 @@
                                 <span>Latest News</span>
                             </a>
                         </li> -->
-
+                        <hr>
                         <li class="sidebar-dropdown">
                             <a href="mailto:grantgubatan@gmail.com">
-                                <span>Email Support Ticket</span>
+                                <i data-feather="mail"></i> <span>Email Support Ticket</span>
                             </a>
                         </li>
 

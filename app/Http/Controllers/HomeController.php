@@ -59,7 +59,15 @@ class HomeController extends Controller
       $client->occupation = $request->oc;
       $client->leadsource = $request->ls;
       $client->traded = $request->td;
-      $client->account_balance = $request->account_balance;
+
+      if(empty($request->account_balance))
+      {
+        $client->account_balance = 0;
+      }
+      else
+      {
+        $client->account_balance = $request->account_balance;
+      }
 
       $client->account_number = $request->account_number;
       $client->account_type = $request->account_type;
@@ -74,6 +82,19 @@ class HomeController extends Controller
       $client->empstatus = $request->empstatus;
       $client->company_name = $request->company_name;
       $client->company_address = $request->company_address;
+
+
+      $client->secondary_salutation = $request->secondary_salutation;
+      $client->secondary_fullname = $request->secondary_fullname;
+      $client->secondary_address = $request->secondary_address;
+      $client->secondary_primary_number = $request->secondary_primary_number;
+      $client->secondary_mobile_number = $request->secondary_mobile_number;
+      $client->secondary_home_number = $request->secondary_home_number;
+      $client->secondary_business_number = $request->secondary_business_number;
+      $client->secondary_dob = $request->secondary_dob;
+      $client->secondary_pob = $request->secondary_pob;
+      $client->secondary_country = $request->secondary_country;
+      $client->secondary_mstatus = $request->secondary_mstatus;
 
       $random_string = str_random(8);
 
@@ -202,7 +223,15 @@ class HomeController extends Controller
     public function editBalance(Request $request)
     {
       $client = Client::findOrFail($request->id);
-      $client->account_balance = $request->account_balance;
+
+
+      if(empty($request->account_balance) || $request->account_balance == 0.0 || $request->account_balance == 0)
+      {
+        $client->account_balance = 0;
+      }
+      else {
+        $client->account_balance = $request->account_balance;
+      }
       $client->save();
       $notification = array(
         "message" => "Success!",
@@ -292,10 +321,12 @@ class HomeController extends Controller
       {
         $api_data = Api::stock()->daily($trade->ticker);
         $trade_data = reset($api_data["Time Series (Daily)"]); //changes
-        $trade->stock_price = number_format((float)$trade_data["4. close"], 2, '.', '');
+        $trade->stock_price = round($trade_data["4. close"], 2);
         $trade->current_value = $trade->stock_price * $trade->volume;
-        $trade->profit = $trade->current_value - $trade->initial_investment_value;
-        $trade->gain_percentage = number_format(($trade->profit / $trade->initial_investment_value) * 100, 2);
+        $trade->current_value = (float) $trade->current_value;
+        $trade->initial_investment_value = (float) $trade->initial_investment_value;
+        $trade->profit = bcsub($trade->initial_investment_value,$trade->current_value);
+        $trade->gain_percentage = round(($trade->profit / $trade->initial_investment_value) * 100, 2);
 
       }
 

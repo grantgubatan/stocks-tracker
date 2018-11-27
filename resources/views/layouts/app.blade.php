@@ -42,7 +42,8 @@
     <script src="{{ asset('js/highstock.js') }}"></script>
     <script src="{{ asset('js/exporting.js') }}"></script>
     <script src="{{ asset('js/export-data.js') }}"></script>
-
+    <script src="{{ asset('js/feather.min.js') }}"></script>
+    <script src="{{ asset('js/feather.js') }}"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
   </head>
@@ -84,10 +85,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
+                                  @if (Auth::user()->role == 'client')
+                                    <a class="dropdown-item" href="{{url('profile')}}">
+                                        <span>Profile</span>
+                                    </a>
+                                  @else
                                     <a class="dropdown-item" href="{{url('settings')}}">
                                         <span>Admin Settings</span>
                                     </a>
+                                  @endif
+
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -161,4 +168,7 @@
 
   }
 @endif
+
+feather.replace()
+
 </script>

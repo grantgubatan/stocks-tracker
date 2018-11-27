@@ -7,7 +7,7 @@
   <main class="page-content">
       <div class="">
         <div class="row">
-          <h1>Manage Trades</h1>
+          <h1> <i data-feather="align-left"></i> My Stocks</h1>
         </div>
 
       <div class="row">
@@ -25,13 +25,14 @@
               <thead>
                 <tr>
                   <th>Company Name</th>
-                  <th>Stock Ticker</th>
-                  <th>Stock Price</th>
-                  <th>Volume</th>
+                  <th>Ticker</th>
+                  <th>Per Share Purchase Price</th>
+                  <th>Current Stock Price</th>
+                  <th>Quantity</th>
                   <th>Initial Investment</th>
-                  <th>Current Stock Value</th>
+                  <th>Current Investment Value</th>
                   <th>Profit / Loss</th>
-                  <th>Gain Percentage</th>
+                  <th>Percentage Change</th>
                   <th>Buy Date</th>
                   <th>View Stock Status</th>
                 </tr>
@@ -41,6 +42,7 @@
                       <tr>
                         <td>{{$trade->company}}</td>
                         <td>{{$trade->ticker}}</td>
+                        <td>${{$trade->initial_stock_price}}</td>
                         <td>${{$trade->stock_price}}</td>
                         <td>{{$trade->volume}}</td>
                         <td>${{$trade->initial_investment_value}}</td>

@@ -11,7 +11,7 @@
         </div>
 
         <div class="row">
-          <div class="card col-12">
+          <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">

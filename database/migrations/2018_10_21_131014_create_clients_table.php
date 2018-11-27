@@ -26,6 +26,7 @@ class CreateClientsTable extends Migration
             $table->string('leadsource')->nullable();
             $table->string('traded')->nullable();
             $table->decimal('account_balance', 10, 2)->nullable();
+            
             $table->string('account_number')->nullable();
             $table->string('account_type')->nullable();
             $table->string('salutation')->nullable();
@@ -39,6 +40,19 @@ class CreateClientsTable extends Migration
             $table->string('empstatus')->nullable();
             $table->string('company_name')->nullable();
             $table->string('company_address')->nullable();
+
+
+            $table->string('secondary_salutation')->nullable();
+            $table->string('secondary_fullname')->nullable();
+            $table->string('secondary_address')->nullable();
+            $table->string('secondary_primary_number')->nullable();
+            $table->string('secondary_mobile_number')->nullable();
+            $table->string('secondary_home_number')->nullable();
+            $table->string('secondary_business_number')->nullable();
+            $table->string('secondary_dob')->nullable();
+            $table->string('secondary_pob')->nullable();
+            $table->string('secondary_country')->nullable();
+            $table->string('secondary_mstatus')->nullable();
             $table->timestamps();
         });
     }

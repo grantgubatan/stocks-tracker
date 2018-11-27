@@ -46,37 +46,33 @@
 		                    <form action="{{url('client-edit')}}" method="POST" id="editClientForm">
                           @csrf
                               <input type="hidden" name="id" value="{{$client->id}}">
-                              <div class="form-group row">
-                                <label for="name" class="col-4 col-form-label">Full Name</label>
-                                <div class="col-8">
+                              <div class="row">
+                                <div class="col">
+                                  <label for="name">Full Name</label>
                                   <input type="text" id="name" name="fullname" placeholder="Full Name" class="form-control here" type="text" value="{{$client->fullname}}" disabled>
                                 </div>
-                              </div>
 
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Alternative Email</label>
-                                <div class="col-8">
+                                <div class="col">
+                                  <label for="email">Alternative Email</label>
                                   <input type="email" id="name" name="email2" placeholder="Alternative Email" class="form-control here" type="text" value="{{$client->email2}}" disabled>
                                 </div>
                               </div>
 
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Phone Number</label>
-                                <div class="col-8">
+                              <div class="row">
+                                <div class="col">
+                                  <label for="email">Phone Number</label>
                                   <input type="text" id="name" name="phone" placeholder="Phone Number" class="form-control here" type="text" value="{{$client->phone}}" disabled>
                                 </div>
-                              </div>
 
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Alternative Phone Number</label>
-                                <div class="col-8">
+                                <div class="col">
+                                  <label for="email">Alternative Phone Number</label>
                                   <input type="text" id="name" name="phone2" placeholder="Alternative Phone Number" class="form-control here" type="text" value="{{$client->phone2}}" disabled>
                                 </div>
                               </div>
 
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Country</label>
-                                <div class="col-8">
+                              <div class="row">
+                                <div class="col">
+                                  <label for="email">Country</label>
                                   <select class="form-control" name="country" disabled required>
                                     <option value="">Select Country</option>
                                     <option value="Afghanistan" {{ ( $client->country == 'Afghanistan') ? 'selected' : '' }}>Afghanistan</option>
@@ -325,36 +321,149 @@
                                     <option value="Zimbabwe" {{ ( $client->country == 'Zimbabwe') ? 'selected' : '' }}>Zimbabwe</option>
                                     </select>
                                 </div>
-                              </div>
 
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Occupation</label>
-                                <div class="col-8">
+                                <div class="col">
+                                  <label for="email">Occupation</label>
                                   <input id="name" name="occupation" placeholder="Occupation" class="form-control here" type="text" value="{{$client->occupation}}" disabled>
                                 </div>
                               </div>
 
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Lead Source</label>
-                                <div class="col-8">
+                              <div class="row">
+                                <div class="col">
+                                  <label for="email">Lead Source</label>
                                   <input id="name" name="leadsource" placeholder="Lead Source" class="form-control here" type="text" value="{{$client->leadsource}}" disabled>
                                 </div>
-                              </div>
 
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">Traded</label>
-                                <div class="col-8">
+                                <div class="col">
+                                  <br>
+                                  <br>
+                                  <label for="email">Traded</label>
                                   <input type="radio" value="yes" name="traded" {{ ( $client->traded == 'yes') ? 'checked' : '' }} disabled> YES
                                   <input type="radio" value="no" name="traded" {{ ( $client->traded == 'no') ? 'checked' : '' }} disabled> NO
                                 </div>
                               </div>
 
+
+                              <div class="row">
+                                <div class="col">
+                                  <label for="text">Account Number</label>
+                                  <input id="text" name="account_number" placeholder="Account Number" class="form-control here" type="text" value="{{$client->account_number}}" disabled>
+                                </div>
+
+                                <div class="col">
+                                  <div class="col">
+                                    <label for="text">Account Type</label>
+                                    <select class="form-control" name="account_type" disabled required>
+                                      <option value="">Select Account Type</option>
+                                      <option value="Individual" {{ ( $client->account_type == 'Individual') ? 'selected' : '' }}>Individual</option>
+                                      <option value="Joint" {{ ( $client->account_type == 'Joint') ? 'selected' : '' }}>Joint</option>
+                                      <option value="Corporate" {{ ( $client->account_type == 'Corporate') ? 'selected' : '' }}>Corporate</option>
+                                      </select>
+                                  </div>
+                                </div>
+
+                                <div class="col">
+                                  <label for="">Salutation</label>
+                                  <select class="form-control" name="salutation" disabled required>
+                                    <option value="">Select Salutation</option>
+                                    <option value="Mr" {{ ( $client->salutation == 'Mr') ? 'selected' : '' }}>Mr</option>
+                                    <option value="Mrs" {{ ( $client->salutation == 'Mrs') ? 'selected' : '' }}>Mrs</option>
+                                    <option value="Miss" {{ ( $client->salutation == 'Miss') ? 'selected' : '' }}>Miss</option>
+                                  </select>
+                                </div>
+                              </div>
+
+
+                              <div class="row">
+                                <div class="col">
+                                  <label for="text">Address</label>
+                                  <input id="text" name="address" placeholder="Address" class="form-control here" type="text" value="{{$client->address}}" disabled>
+                                </div>
+
+                                <div class="col">
+                                  <div class="col">
+                                    <label for="text">Mobile Number</label>
+                                    <input id="text" name="mobile_number" placeholder="Mobile Number" class="form-control here" type="text" value="{{$client->mobile_number}}" disabled>
+                                  </div>
+                                </div>
+
+                                <div class="col">
+                                  <div class="col">
+                                    <label for="text">Home Number</label>
+                                    <input id="text" name="home_number" placeholder="Home Number" class="form-control here" type="text" value="{{$client->home_number}}" disabled>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col">
+                                  <label for="text">Business Number</label>
+                                  <input id="text" name="business_number" placeholder="Business Number" class="form-control here" type="text" value="{{$client->business_number}}" disabled>
+                                </div>
+
+                                <div class="col">
+                                  <label for="text">Date of Birth</label>
+                                  <input id="date" name="dob" placeholder="Date of Birth" class="form-control here" type="date" value="{{$client->dob->format('Y-m-d')}}" disabled>
+                                </div>
+
+                                <div class="col">
+                                  <label for="text">Place of Birth</label>
+                                  <input id="text" name="pob" placeholder="Home Number" class="form-control here" type="text" value="{{$client->pob}}" disabled>
+                                </div>
+                              </div>
+
+
+                              <div class="row">
+                                <div class="col">
+                                  <label for="">Marital Status (required)</label>
+                                  <select class="form-control" name="mstatus" disabled required>
+                                    <option value="">Select Marital Status</option>
+                                    <option value="Single/Unmarried" {{ ( $client->mstatus == 'Single/Unmarried') ? 'selected' : '' }}>Single/Unmarried</option>
+                                    <option value="Married" {{ ( $client->mstatus == 'Married') ? 'selected' : '' }}>Married</option>
+                                    <option value="Divorced" {{ ( $client->mstatus == 'Divorced') ? 'selected' : '' }}>Divorced</option>
+                                    <option value="Widowed" {{ ( $client->mstatus == 'Widowed') ? 'selected' : '' }}>Widowed</option>
+                                  </select>
+                                </div>
+
+                                <div class="col">
+                                  <label for="text">Company Name</label>
+                                  <input id="text" name="company_name" placeholder="Company Name" class="form-control here" type="text" value="{{$client->company_name}}" disabled>
+                                </div>
+
+                                <div class="col">
+                                  <label for="text">Company Address</label>
+                                  <input id="text" name="company_address" placeholder="Company Address" class="form-control here" type="text" value="{{$client->company_address}}" disabled>
+                                </div>
+                              </div>
+
+                              <br>
                               <div class="form-group row">
                                 <div class="offset-4 col-8">
                                   <button id="triggerEdit" type="button" class="btn btn-secondary">Edit Profile</button>
                                   <button type="submit" id="editButton" type="button" class="btn btn-default">Update Profile</button>
                                   <button id="cancelButton" type="button" class="btn btn-secondary" onclick="disableEdit()">Cancel</button>
                                 </div>
+                              </div>
+                            </form>
+                            <hr>
+
+
+                            <h2>Secondary Account</h2>
+
+                            <form class="" action="{{url('client-edit-email')}}" method="post" id="editSecondaryForm">
+                              @csrf
+                              <input type="hidden" name="id" value="{{$client->id}}">
+                              <div class="form-group row">
+                                <label for="email" class="col-4 col-form-label">Account Email</label>
+                                <div class="col-8">
+                                  <input type="email" id="name" name="email" placeholder="Email" class="form-control here" type="text" value="{{$client->email}}" disabled>
+                                </div>
+                              </div>
+
+                              <div class="offset-4 col-8">
+                                <button id="triggerEditSecondary" type="button" class="btn btn-secondary">Edit Seondary Account</button>
+                                <button type="submit" id="editButtonSecondary" type="button" class="btn btn-default">Update  Secondary Profile</button>
+                                <button id="cancelButtonSecondary" type="button" class="btn btn-secondary" onclick="disableEdit()">Cancel</button>
                               </div>
                             </form>
 		                </div>
@@ -391,6 +500,16 @@ function enableEditEmail() {
     $('#cancelButtonEmail').show();
 }
 
+function enableEditSecondary() {
+    $("#editSecondaryForm input[type='email']:disabled").each(function () {
+       $(this).removeAttr('disabled');
+    });
+
+    $('#triggerEditSecondary').hide();
+    $('#editButtonSecondary').show();
+    $('#cancelButtonSecondary').show();
+}
+
 function disableEdit() {
   location.reload();
 }
@@ -408,6 +527,12 @@ function disableEdit() {
       $('#cancelButtonEmail').hide();
       $("#triggerEditEmail").click(function() {
         enableEditEmail();
+      });
+
+      $('#editButtonSecondary').hide();
+      $('#cancelButtonSecondary').hide();
+      $("#triggerEditSecondary").click(function() {
+        enableEditSecondary();
       });
   });
 </script>

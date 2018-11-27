@@ -6,10 +6,9 @@
                     <div></div>
                     <div></div>
                 </div>
-
                 <div class="sidebar-header" style="margin-top:60px;">
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/bootstrap4/assets/img/user.jpg" alt="User picture">
+                        <img class="img-responsive img-rounded" src="{{ asset('user.png') }}" alt="User picture">
                     </div>
                     <div class="user-info">
                         <span class="user-name">
@@ -17,7 +16,6 @@
                         </span>
                         <span class="user-role">User</span>
                         <span class="user-status">
-                            <i class="fa fa-circle"></i>
                             <span>Online</span>
                         </span>
                     </div>
@@ -41,22 +39,23 @@
                         <li class="header-menu">
                             <span>General</span>
                         </li>
+                        <hr>
                         <li class="sidebar-dropdown">
                             <a href="{{url('home')}}">
-                                <span>Dashboard</span>
+                                <i data-feather="grid"></i> <span> Dashboard</span>
                             </a>
                         </li>
-
+                        <hr>
                         <li class="sidebar-dropdown">
                             <a href="{{url('stocks')}}">
-                                <span>My Stocks</span>
+                              <i data-feather="trending-up"></i> <span>My Stocks</span>
                             </a>
                         </li>
 
-
+                        <hr>
                         <li class="sidebar-dropdown">
                             <a href="{{url('profile')}}">
-                                <span>Profile Settings</span>
+                                <i data-feather="user-plus"></i> <span>My Profile</span>
                             </a>
                         </li>
 
@@ -66,10 +65,10 @@
                                 <span>Latest News</span>
                             </a>
                         </li> -->
-
+                        <hr>
                         <li class="sidebar-dropdown">
                             <a href="mailto:grantgubatan@gmail.com">
-                                <span>Email Support Ticket</span>
+                                <i data-feather="mail"></i> <span>Email Support Ticket</span>
                             </a>
                         </li>
 
