@@ -57,7 +57,7 @@ class HomeController extends Controller
       $client->phone2 = $request->phone2;
       $client->country = $request->country;
       $client->occupation = $request->oc;
-      $client->leadsource = $request->ls;
+      // $client->leadsource = $request->ls;
       $client->traded = $request->td;
 
       if(empty($request->account_balance))

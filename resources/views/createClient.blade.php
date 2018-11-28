@@ -301,10 +301,10 @@
                     <input type="text" name="oc" value="" class="form-control" placeholder="Occupation" required>
                   </div>
 
-                  <div class="col">
+                  <!-- <div class="col">
                     <label for="">Lead Source</label>
                     <input type="text" name="ls" value="" class="form-control" placeholder="Lead Source">
-                  </div>
+                  </div> -->
                 </div>
 
 

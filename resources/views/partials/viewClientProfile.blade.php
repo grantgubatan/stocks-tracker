@@ -330,11 +330,6 @@
 
                               <div class="row">
                                 <div class="col">
-                                  <label for="email">Lead Source</label>
-                                  <input id="name" name="leadsource" placeholder="Lead Source" class="form-control here" type="text" value="{{$client->leadsource}}" disabled>
-                                </div>
-
-                                <div class="col">
                                   <br>
                                   <br>
                                   <label for="email">Traded</label>

@@ -326,13 +326,6 @@
                                 </div>
 
                                 <div class="form-group row">
-                                  <label for="email" class="col-4 col-form-label">Lead Source</label>
-                                  <div class="col-8">
-                                    <input id="name" name="leadsource" placeholder="Lead Source" class="form-control here" type="text" value="{{Auth::user()->client->leadsource}}" disabled>
-                                  </div>
-                                </div>
-
-                                <div class="form-group row">
                                   <label for="email" class="col-4 col-form-label">Traded</label>
                                   <div class="col-8">
                                     <input type="radio" value="yes" name="traded" {{ ( Auth::user()->client->traded == 'yes') ? 'checked' : '' }} disabled> YES
