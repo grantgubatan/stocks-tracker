@@ -49,6 +49,12 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i data-feather="alert-circle"></i> <span>Market News</span>
+                            </a>
+                        </li>
+
                         <hr>
                         <li class="sidebar-dropdown">
                             <a href="{{url('profile')}}">
