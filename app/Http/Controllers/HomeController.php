@@ -110,6 +110,9 @@ class HomeController extends Controller
         ]);
 
         $client->save();
+        $client2 = Client::findOrFail($client->id);
+        $client2->user_id = $user->id;
+        $client2->save();
 
         $data = array('name'=>$client->fullname, 'random_string'=>$random_string, 'recipient' => $client->email);
 
@@ -119,12 +122,6 @@ class HomeController extends Controller
                   $message->subject("Your Generated Password:");
                   $message->to($data["recipient"]);
               });
-        $client2 = Client::findOrFail($client->id);
-        $client2->user_id = $user->id;
-        $client2->save();
-
-
-
 
         $notification = array(
           "message" => "Client Account Created",
