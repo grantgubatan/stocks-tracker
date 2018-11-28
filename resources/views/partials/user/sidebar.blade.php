@@ -7,11 +7,8 @@
                     <div></div>
                 </div>
                 <div class="sidebar-header" style="margin-top:60px;">
-                    <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="{{ asset('user.png') }}" alt="User picture">
-                    </div>
                     <div class="user-info">
-                        <span class="user-name">
+                        <span class="user-name blue-header">
                           {{ Auth::user()->name }}
                         </span>
                         <span class="user-role">User</span>

@@ -8,7 +8,7 @@
                 </div>
                 <div class="sidebar-header" style="margin-top:60px;">
                     <div class="user-info">
-                        <span class="blue-header" class="user-name">
+                        <span class="user-name blue-header">
                           {{ Auth::user()->name }}
                         </span>
                         <span class="user-role">Admin</span>
