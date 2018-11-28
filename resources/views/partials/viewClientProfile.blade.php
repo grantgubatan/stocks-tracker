@@ -398,7 +398,11 @@
 
                                 <div class="col">
                                   <label for="text">Date of Birth</label>
+                                  @if ($client->dob !== null)
                                   <input id="date" name="dob" placeholder="Date of Birth" class="form-control here" type="date" value="{{$client->dob->format('Y-m-d')}}" disabled>
+                                  @else
+                                  <input id="date" name="dob" placeholder="Date of Birth" class="form-control here" type="date" disabled>
+                                  @endif
                                 </div>
 
                                 <div class="col">
