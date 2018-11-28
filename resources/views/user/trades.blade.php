@@ -4,7 +4,7 @@
 <style media="screen">
   #trades-table tr
   {
-    font-size: 10px;
+    font-size: 13px;
   }
 </style>
 <div class="container page-wrapper chiller-theme toggled" id="app-6">
