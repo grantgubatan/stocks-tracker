@@ -360,17 +360,18 @@ class HomeController extends Controller
       foreach ($trades as $trade)
       {
         $api_data = Api::stock()->daily($trade->ticker);
-        $trade_data = reset($api_data["Time Series (Daily)"]); //changes
-        $trade->stock_price = round($trade_data["4. close"], 2);
-        $trade->current_value = $trade->stock_price * $trade->volume;
-        $trade->current_value = (float) $trade->current_value;
-        $trade->initial_investment_value = (float) $trade->initial_investment_value;
-        $trade->profit = bcsub($trade->initial_investment_value,$trade->current_value);
-        $trade->gain_percentage = round(($trade->profit / $trade->initial_investment_value) * 100, 2);
+        dd($api_data["Time Series (Daily)"]);
+        //$trade_data = reset($api_data["Time Series (Daily)"]); //changes
+        // $trade->stock_price = round($trade_data["4. close"], 2);
+        // $trade->current_value = $trade->stock_price * $trade->volume;
+        // $trade->current_value = (float) $trade->current_value;
+        // $trade->initial_investment_value = (float) $trade->initial_investment_value;
+        // $trade->profit = bcsub($trade->initial_investment_value,$trade->current_value);
+        // $trade->gain_percentage = round(($trade->profit / $trade->initial_investment_value) * 100, 2);
 
       }
 
-      return view('user.trades')->with('trades', $trades);
+      //return view('user.trades')->with('trades', $trades);
       // $api_data = Api::stock()->daily('MSFT');
       // return dd($api_data);
     }
