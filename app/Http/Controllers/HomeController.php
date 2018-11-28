@@ -360,7 +360,7 @@ class HomeController extends Controller
       foreach ($trades as $trade)
       {
         $api_data = Api::stock()->daily($trade->ticker);
-        dd($api_data["Time Series (Daily)"]);
+        dd($api_data);
         //$trade_data = reset($api_data["Time Series (Daily)"]); //changes
         // $trade->stock_price = round($trade_data["4. close"], 2);
         // $trade->current_value = $trade->stock_price * $trade->volume;
