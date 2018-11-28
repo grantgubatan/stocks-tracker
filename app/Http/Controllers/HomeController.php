@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use AlphaVantage\Api;
+use AlphaVantage\Api as ApiClass;
 class HomeController extends Controller
 {
     /**
@@ -359,7 +359,7 @@ class HomeController extends Controller
       $trades = Trade::where('client_id', Auth::user()->client->id)->limit(3)->get();
       foreach ($trades as $trade)
       {
-        $api_data = Api::stock()->daily($trade->ticker);
+        $api_data = ApiClass::stock()->daily($trade->ticker);
         $trade_data = reset($api_data["Time Series (Daily)"]); //changes
         $trade->stock_price = round($trade_data["4. close"], 2);
         $trade->current_value = $trade->stock_price * $trade->volume;
