@@ -73,6 +73,79 @@
 
 
                           <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editTrade{{$trade->id}}">
+                            Edit Trade
+                          </button>
+
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="editTrade{{$trade->id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <form class="" action="{{url('trade-edit')}}" method="POST">
+                                  @csrf
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Trade - {{$trade->company}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="">
+                                      <h2>Are you sure?</h2>
+                                      <input type="hidden" name="id" value="{{$trade->id}}" class="form-control">
+
+                                      <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Stock Price</label>
+
+                                        <!-- <div class="col-8">
+                                          <input id="stock_price" name="stock_price" placeholder="Stock Price" :value="close" class="form-control here" :data-sp="close_raw" type="text" disabled>
+                                        </div> -->
+
+                                        <div class="col-8">
+                                          <input id="stock_price" name="stock_price" placeholder="Stock Price" value="{{$trade->initial_stock_price}}" class="form-control here" type="text">
+                                        </div>
+                                      </div>
+
+
+                                      <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Buy Date</label>
+                                        <div class="col-8">
+                                          @if ($trade->buy_date !== null)
+                                            <input id="buy_date" name="buy_date" placeholder="Date of Birth" class="form-control here" type="date" value="{{$trade->buy_date->format('Y-m-d')}}">
+                                          @else
+                                          <input id="buy_date" name="buy_date" placeholder="Date of Birth" class="form-control here" type="date">
+                                          @endif
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Quantity</label>
+                                        <div class="col-8">
+                                          <input id="qty" name="qty" placeholder="Quantity" class="form-control here" value="{{$trade->volume}}" type="number" min="1" required>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Stock Value</label>
+                                        <div class="col-8">
+                                          <input id="stock_value" name="stock_value" value="{{$trade->initial_investment_value}}" placeholder="Stock Value" class="form-control here" type="text" required>
+                                        </div>
+                                      </div>
+
+
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="submit" class="btn btn-secondary btn-sm">Confirm Changes</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <!-- Button trigger modal -->
                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteTrade{{$trade->id}}">
                             Delete Trade
                           </button>
@@ -110,12 +183,68 @@
             </table>
           </div>
         </div>
+
+
+        <br>
+        <div class="row">
+          <h3>Transaction History</h3>
+          <div class="table-responsive">
+            <table class="table table-striped" id="trades-table2">
+              <thead>
+                <tr>
+                  <td>Trade</td>
+                  <td>Action</td>
+                  <td>Buy Date</td>
+                  <td>Sell Date</td>
+                  <th>Transaction Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                  @foreach ($client->trade_histories as $th)
+                      <tr>
+                        <td>{{$th->trade->company}}</td>
+                        <td>{{$th->action}}</td>
+                        <td>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</td>
+                        <td>{{  $trade->sell_date === null ? "--" : \Carbon\Carbon::parse($trade->sell_date)->format('m/d/Y') }}</td>
+                        <td>{{$th->created_at->format('m/d/Y')}}</td>
+                        </td>
+                      </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
       </div>
   </main>
 <!-- page-content" -->
 </div>
 
 <script type="text/javascript">
+
+var client_id = "";
+var company = "";
+var ticker = "";
+var qty = "";
+var stock_value = "";
+var buy_date = "";
+
+
+function changeValue()
+{
+  $("#qty").bind('keyup input', function(){
+    // stock_price = parseFloat($("#stock_price").attr("data-sp"));
+    stock_price = parseFloat($("#stock_price").val());
+    qty = $("#qty").val();
+    stock_value = stock_price * qty;
+    dollar_value = formatDollar(stock_value);
+    $("#stock_value").val(stock_value);
+    // $('#stock_value').attr('data-sv', stock_value);
+
+  });
+}
 
 function formatDollar(num) {
   var p = num.toFixed(2).split(".");
@@ -136,7 +265,11 @@ $(document).ready(function() {
     "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>'
     });
 
+    $('#trades-table2').DataTable({
+    "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>'
+    });
 
+    changeValue();
 
 });
 

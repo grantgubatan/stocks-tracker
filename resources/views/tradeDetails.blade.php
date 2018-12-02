@@ -245,9 +245,10 @@ $( document ).ready(function() {
                     return '$' + parseFloat(value).toFixed(2);
                 });
                 current_value = value2["4. close"] * "{{$trade->volume}}";
+                init_stock_price =  "{{$trade->initial_stock_price}}";
                 current_value_decim = value2["4. close"] * "{{$trade->volume}}";
                 initial_investment_price = "{{$trade->initial_investment_value}}";
-                profit = current_value.toFixed(2) - parseFloat(initial_investment_price).toFixed(2);
+                profit = init_stock_price - parseFloat(initial_investment_price).toFixed(2);
                 gain_percentage = (profit / parseFloat(initial_investment_price).toFixed(2)) * 100;
                 var app6 = new Vue({
                 el: '#app-6',

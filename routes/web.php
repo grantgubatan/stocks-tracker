@@ -41,6 +41,7 @@ Route::post('/trade-create', 'HomeController@createTrade')->name('trade-create')
 Route::get('/trade/{id}', 'HomeController@viewTrade')->middleware('verified');
 Route::get('/stocks', 'HomeController@tradeManager')->middleware('verified');
 Route::post('/trade-delete', 'HomeController@tradeDelete');
+Route::post('/trade-edit', 'HomeController@tradeEdit');
 Route::post('/trade-sell', 'HomeController@tradeSell');
 /* Trades */
 

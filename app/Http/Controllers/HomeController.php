@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Client;
 use App\Trade;
+use App\TradeHistory;
 use App\User;
 use Auth;
 use Mail;
@@ -155,8 +156,10 @@ class HomeController extends Controller
     public function viewClient(Request $request, $id)
     {
       $client = Client::findOrFail($id);
+      $trade_histories = TradeHistory::where('trade_id',$id);
       return view('client')
-              ->with('client', $client);
+              ->with('client', $client)
+              ->with('trade_histories', $trade_histories);
     }
 
     public function editClient(Request $request)
@@ -295,11 +298,18 @@ class HomeController extends Controller
         $trade->status = "Bought";
         $trade->buy_date = $request->buy_date;
         $trade->save();
+
+
+        $trade_history = new TradeHistory();
+        $trade_history->client_id = $trade->client_id;
+        $trade_history->trade_id = $trade->id;
+        $trade_history->action = "Bought";
+        $trade_history->save();
         return "ok";
       }
       catch (\Illuminate\Database\QueryException $e)
       {
-        return $e;
+        return "HAHAHA: "+$e;
       }
       catch (\Exception $e)
       {
@@ -515,6 +525,26 @@ class HomeController extends Controller
 
     }
 
+    public function tradeEdit(Request $request)
+    {
+      $trade = Trade::findOrFail($request->id);
+      $trade->initial_stock_price = $request->stock_price;
+      $trade->buy_date = $request->buy_date;
+      $trade->volume = $request->qty;
+      $trade->initial_investment_value = $request->stock_value;
+      $trade->save();
+
+      $notification = array(
+        "message" => "Trade Edit Saved",
+        "alert-type" => "success"
+      );
+
+      return back()->with($notification);
+
+    }
+
+
+
 
     public function tradeSell(Request $request)
     {
@@ -525,6 +555,12 @@ class HomeController extends Controller
       $trade->profit = $request->profit;
       $trade->gain_percentage = $request->gain_percentage;
       $trade->save();
+
+      $trade_history = new TradeHistory();
+      $trade_history->trade_id = $trade->id;
+      $trade_history->client_id = $trade->client_id;
+      $trade_history->action = "Sold";
+      $trade_history->save();
 
       $notification = array(
         "message" => "Trade Sold",

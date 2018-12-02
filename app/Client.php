@@ -13,6 +13,11 @@ class Client extends Model
       return $this->hasMany(Trade::class);
     }
 
+    public function trade_histories()
+    {
+      return $this->hasMany(TradeHistory::class);
+    }
+
     public function user()
     {
       return $this->belongsTo(User::class);

@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Trade extends Model
+class TradeHistory extends Model
 {
+  public function trade()
+  {
+    return $this->belongsTo(Trade::class);
+  }
 
-  protected $dates = ['buy_date'];
   public function client()
   {
     return $this->belongsTo(Client::class);
