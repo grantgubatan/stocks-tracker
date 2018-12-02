@@ -100,11 +100,11 @@
               <div class="row">
                 <div class="col-6">
                   <h4>Profit / Loss</h4>
-                  <p><span v-cloak>@{{profit}}</span></p>
+                  <p class="colorize"><span v-cloak>@{{profit}}</span></p>
                 </div>
 
                 <div class="col-6">
-                  <h4>Gain Percentage</h4>
+                  <h4>Percentage Change</h4>
                   <p class="colorize"><span v-cloak>@{{gain_percentage_decim}}%</span></p>
                 </div>
               </div>
@@ -116,7 +116,7 @@
           <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
             <div class="card-body">
               <h1>Trade Details</h1>
-              <p>Buy Date: {{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</p>
+              <p>Buy Date: {{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</p>
 
 
 
@@ -173,7 +173,7 @@
               <div class="row">
                 <div class="col-4">
                   <h3>Buy Date</h3>
-                  <p>{{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</p>
+                  <p>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</p>
                 </div>
 
                 <div class="col-4">
@@ -341,7 +341,7 @@ $( document ).ready(function() {
               <div class="row">
                 <div class="col-4">
                   <h3>Buy Date</h3>
-                  <p>{{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</p>
+                  <p>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</p>
                 </div>
 
                 <div class="col-4">
@@ -375,6 +375,21 @@ $( document ).ready(function() {
       $(".colorize").addClass("gain");
     }
     else if(gain_percentage < 0)
+    {
+      $(".colorize").addClass("loss");
+    }
+
+
+    profit_value = $("#profit").data("profit");
+    if(profit_value == 0)
+    {
+      $(".colorize").addClass("zero");
+    }
+    else if(profit_value > 0)
+    {
+      $(".colorize").addClass("gain");
+    }
+    else if(profit_value < 0)
     {
       $(".colorize").addClass("loss");
     }

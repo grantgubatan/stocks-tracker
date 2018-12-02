@@ -58,8 +58,20 @@
                               <div class="form-group row">
                                 <label for="name" class="col-4 col-form-label">Stock Price</label>
 
-                                <div class="col-8">
+                                <!-- <div class="col-8">
                                   <input id="stock_price" name="stock_price" placeholder="Stock Price" :value="close" class="form-control here" :data-sp="close_raw" type="text" disabled>
+                                </div> -->
+
+                                <div class="col-8">
+                                  <input id="stock_price" name="stock_price" placeholder="Stock Price" class="form-control here" type="text">
+                                </div>
+                              </div>
+
+
+                              <div class="form-group row">
+                                <label for="name" class="col-4 col-form-label">Buy Date</label>
+                                <div class="col-8">
+                                  <input id="buy_date" name="buy_date" placeholder="Buy Date" class="form-control here" type="date" required>
                                 </div>
                               </div>
 
@@ -103,7 +115,7 @@ var company = "";
 var ticker = "";
 var qty = "";
 var stock_value = "";
-
+var buy_date = "";
 
 
 function isIterable(obj) {
@@ -124,12 +136,13 @@ function formatDollar(num) {
 function changeValue()
 {
   $("#qty").bind('keyup input', function(){
-    stock_price = parseFloat($("#stock_price").attr("data-sp"));
+    // stock_price = parseFloat($("#stock_price").attr("data-sp"));
+    stock_price = parseFloat($("#stock_price").val());
     qty = $("#qty").val();
     stock_value = stock_price * qty;
     dollar_value = formatDollar(stock_value);
-    $("#stock_value").val(dollar_value);
-    $('#stock_value').attr('data-sv', stock_value);
+    $("#stock_value").val(stock_value);
+    // $('#stock_value').attr('data-sv', stock_value);
 
   });
 }
@@ -159,6 +172,7 @@ function onConfirmClick()
           'stock_price': stock_price,
           'qty': qty,
           'stock_value': stock_value,
+          'buy_date': $("#buy_date").val()
 
 
         },

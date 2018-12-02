@@ -781,7 +781,7 @@
 
                               <br>
                               <div class="offset-4 col-8">
-                                <button id="triggerEditSecondary" type="button" class="btn btn-secondary">Edit Seondary Account</button>
+                                <button id="triggerEditSecondary" type="button" class="btn btn-secondary">Edit Secondary Account</button>
                                 <button type="submit" id="editButtonSecondary" type="button" class="btn btn-default">Update  Secondary Profile</button>
                                 <button id="cancelButtonSecondary" type="button" class="btn btn-secondary" onclick="disableEdit()">Cancel</button>
                               </div>

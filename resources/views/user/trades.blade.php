@@ -54,7 +54,7 @@
                         <td>${{$trade->current_value}}</td>
                         <td class="profit" data-value="{{$trade->profit}}">{{$trade->profit}}</td>
                         <td class="gain_percentage" data-value="{{$trade->gain_percentage}}">{{$trade->gain_percentage}}%</td>
-                        <td>{{ \Carbon\Carbon::parse($trade->created_at)->format('m/d/Y')}}</td>
+                        <td>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</td>
                         <td>
                           <a href="{{url('trade/'.$trade->id)}}" class="btn btn-secondary">Trade Status</a>
                         </td>

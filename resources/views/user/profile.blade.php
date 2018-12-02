@@ -325,13 +325,13 @@
                                   </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                   <label for="email" class="col-4 col-form-label">Traded</label>
                                   <div class="col-8">
                                     <input type="radio" value="yes" name="traded" {{ ( Auth::user()->client->traded == 'yes') ? 'checked' : '' }} disabled> YES
                                     <input type="radio" value="no" name="traded" {{ ( Auth::user()->client->traded == 'no') ? 'checked' : '' }} disabled> NO
                                   </div>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group row">
                                   <div class="offset-4 col-8">

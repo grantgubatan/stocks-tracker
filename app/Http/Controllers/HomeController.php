@@ -293,6 +293,7 @@ class HomeController extends Controller
         $trade->initial_stock_price = $request->stock_price;
         $trade->initial_investment_value = $request->stock_value;
         $trade->status = "Bought";
+        $trade->buy_date = $request->buy_date;
         $trade->save();
         return "ok";
       }
