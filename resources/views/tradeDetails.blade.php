@@ -172,7 +172,7 @@
                                 <th>Initial Investment</th>
                                 <th>Current Value</th>
                                 <th>Profit / Loss</th>
-                                <th>Gain</th>
+                                <th>Percentage Change</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -184,8 +184,8 @@
                                 <td><span v-cloak>@{{close}}</span></td>
                                 <td class="initial_value">{{$trade->initial_investment_value}}</td>
                                 <td><span v-cloak>@{{current_value}}</span></td>
-                                <td id="profit_tab" class="profit" :data-value="profit"><span v-cloak>@{{profit}}</span></td>
-                                <td id="gain_percentage_tab" class="gain_percentage" :data-value="gain_percentage_decim"><span v-cloak>@{{gain_percentage_decim}}%</span></td>
+                                <td id="profit_tab" :data-value="profit"><span v-cloak>@{{profit}}</span></td>
+                                <td id="gain_percentage_tab" :data-value="gain_percentage_decim"><span v-cloak>@{{gain_percentage_decim}}%</span></td>
                               </tr>
                               @else
                               <tr>
@@ -261,34 +261,6 @@ function formatDollar(num) {
 }
 
 $( document ).ready(function() {
-
-
-    var profit = $("#profit_tab").data('value');
-
-    if(profit < 0)
-    {
-      $("#profit_tab").css("background", "#ffbdbd");
-
-    }
-    else {
-        $("#profit_tab").css("background", "#caffbd");
-    }
-
-
-
-
-    var gain_percentage = $("#gain_percentage_tab").data('value');
-
-    if(gain_percentage < 0)
-    {
-      $("#gain_percentage_tab").css("background", "#ffbdbd");
-
-    }
-    else {
-        $("#gain_percentage_tab").css("background", "#caffbd");
-    }
-
-
 
     $.ajax({url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+"{{$trade->ticker}}"+"&apikey=KB8SMAYO3IWRKMPJ", success: function(result){
 
@@ -366,6 +338,32 @@ $( document ).ready(function() {
         {
           $(".colorize").addClass("loss");
         }
+
+
+        var profit = $("#profit_tab").data('value');
+
+        if(profit < 0)
+        {
+          $("#profit_tab").css("background", "#ffbdbd");
+
+        }
+        else {
+            $("#profit_tab").css("background", "#caffbd");
+        }
+
+
+
+
+        var gain_percentage = $("#gain_percentage_tab").data('value');
+
+        if(gain_percentage < 0)
+        {
+          $("#gain_percentage_tab").css("background", "#ffbdbd");
+
+        }
+        else {
+            $("#gain_percentage_tab").css("background", "#caffbd");
+        }
     }});
 });
 </script>
@@ -414,12 +412,12 @@ $( document ).ready(function() {
 
                       @if( $trade->type != "Non-NASDAQ")
                       <div class="col-6">
-                        <h4>Gain Percentage</h4>
+                        <h4>Percentage Change</h4>
                         <p id="gp" class="colorize" data-percentage="{{$trade->gain_percentage}}">{{$trade->gain_percentage}}%</span></p>
                       </div>
                       @else
                       <div class="col-6">
-                        <h4>Gain Percentage</h4>
+                        <h4>Percentage Change</h4>
                         <p id="gp" class="colorize" data-percentage="--">--</span></p>
                       </div>
                       @endif
