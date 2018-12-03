@@ -29,6 +29,7 @@ Route::post('/client-add', 'HomeController@addClient')->name('client-add'); //AD
 Route::get('/client/{id}', 'HomeController@viewClient'); //VIEW CLIENT
 Route::post('/client-edit', 'HomeController@editClient')->name('client-edit'); //EDIT CLIENT
 Route::get('/create-trade/client/{id}', 'HomeController@adminCreateTrade');
+Route::get('/create-trade-non-nasdaq/client/{id}', 'HomeController@adminCreateTradeNonNasdaq');
 Route::post('/edit-balance', 'HomeController@editBalance')->name('edit-balance');
 Route::post('/client-edit-email', 'HomeController@ClientEditEmail')->name('client-edit-email');
 Route::post('/client-edit-secondary', 'HomeController@ClientEditSecondary')->name('client-edit-secondary');
@@ -38,6 +39,7 @@ Route::post('/client-delete', 'HomeController@clientDelete');
 
 /* Trades */
 Route::post('/trade-create', 'HomeController@createTrade')->name('trade-create')->middleware('verified');
+Route::post('/trade-create-non-nasdaq', 'HomeController@createTradeNonNasdaq')->name('trade-create-non-nasdaq')->middleware('verified');
 Route::get('/trade/{id}', 'HomeController@viewTrade')->middleware('verified');
 Route::get('/stocks', 'HomeController@tradeManager')->middleware('verified');
 Route::post('/trade-delete', 'HomeController@tradeDelete');

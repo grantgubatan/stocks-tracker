@@ -80,10 +80,15 @@
                             </li> -->
                         @else
                             <li class="nav-item dropdown">
-
+                                @if (Auth::user()->role == 'client')
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                  <i data-feather="user"class="blue-header"></i>  <span class="blue-header">{{ Auth::user()->name }}</span> <span class="caret"></span>
+                                  <i data-feather="user"class="blue-header"></i>  <span class="blue-header">{{Auth::user()->client->salutation}}. {{ Auth::user()->name }}</span> <span class="caret"></span>
                                 </a>
+                                @else
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                  <i data-feather="user"class="blue-header"></i>  <span class="blue-header">Admin {{ Auth::user()->name }}</span> <span class="caret"></span>
+                                </a>
+                                @endif
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                   @if (Auth::user()->role == 'client')

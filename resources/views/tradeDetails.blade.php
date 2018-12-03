@@ -44,7 +44,11 @@
                           <div class="">
                             <h2>Are you sure?</h2>
                             <input type="hidden" name="id" value="{{$trade->id}}" class="form-control">
+                            @if( $trade->type != "Non-NASDAQ")
                             <input type="hidden" name="sold_value" :value="current_value_decim" class="form-control">
+                            @else
+                            <input type="hidden" name="sold_value" value="{{$trade->initial_investment_value}}" class="form-control">
+                            @endif
                             <input type="hidden" name="profit" :value="profit_decim" class="form-control">
                             <input type="hidden" name="gain_percentage" :value="gain_percentage_decim" class="form-control">
                           </div>
@@ -61,6 +65,7 @@
               <hr>
 
               <div class="row">
+
                 <div class="col-6">
                   <h4>Per Share Purchase Price</h4>
                   <p>${{$trade->initial_stock_price}}</p>
@@ -74,10 +79,17 @@
               <hr>
 
               <div class="row">
+                @if( $trade->type != "Non-NASDAQ")
                 <div class="col-6">
                   <h4>Current Stock Price</h4>
                   <p><span v-cloak>@{{close}}</span></p>
                 </div>
+                @else
+                <div class="col-6">
+                  <h4>Current Stock Price</h4>
+                  <p><span>{{$trade->initial_stock_price}}</span></p>
+                </div>
+                @endif
 
                 <div class="col-6">
                   <h4>Quantity</h4>
@@ -91,22 +103,44 @@
                   <p class="initial_value">{{$trade->initial_investment_value}}</p>
                 </div>
 
+                @if( $trade->type != "Non-NASDAQ")
                 <div class="col-6">
                   <h4>Current Investment Value</h4>
                   <p><span v-cloak>@{{current_value}}</span></p>
                 </div>
+                @else
+                <div class="col-6">
+                  <h4>Current Investment Value</h4>
+                  <p><span>{{$trade->initial_investment_value}}</span></p>
+                </div>
+                @endif
               </div>
 
               <div class="row">
+                @if( $trade->type != "Non-NASDAQ")
                 <div class="col-6">
                   <h4>Profit / Loss</h4>
                   <p class="colorize"><span v-cloak>@{{profit}}</span></p>
                 </div>
+                @else
+                <div class="col-6">
+                  <h4>Profit / Loss</h4>
+                  <p class="colorize"><span>--</span></p>
+                </div>
+                @endif
 
+
+                @if( $trade->type != "Non-NASDAQ")
                 <div class="col-6">
                   <h4>Percentage Change</h4>
                   <p class="colorize"><span v-cloak>@{{gain_percentage_decim}}%</span></p>
                 </div>
+                @else
+                <div class="col-6">
+                  <h4>Percentage Change</h4>
+                  <p class="colorize"><span>--</span></p>
+                </div>
+                @endif
               </div>
             </div>
           </div>
@@ -142,6 +176,7 @@
                               </tr>
                             </thead>
                             <tbody>
+                              @if( $trade->type != "Non-NASDAQ")
                               <tr>
                                 <td>{{$trade->company}}</td>
                                 <td>{{$trade->ticker}}</td>
@@ -149,9 +184,21 @@
                                 <td><span v-cloak>@{{close}}</span></td>
                                 <td class="initial_value">{{$trade->initial_investment_value}}</td>
                                 <td><span v-cloak>@{{current_value}}</span></td>
-                                <td><span v-cloak>@{{profit}}</span></td>
-                                <td><span v-cloak>@{{gain_percentage_decim}}%</span></td>
+                                <td id="profit_tab" class="profit" :data-value="profit"><span v-cloak>@{{profit}}</span></td>
+                                <td id="gain_percentage_tab" class="gain_percentage" :data-value="gain_percentage_decim"><span v-cloak>@{{gain_percentage_decim}}%</span></td>
                               </tr>
+                              @else
+                              <tr>
+                                <td>{{$trade->company}}</td>
+                                <td>{{$trade->ticker}}</td>
+                                <td>{{$trade->volume}}</td>
+                                <td>{{$trade->initial_stock_price}}</span></td>
+                                <td class="initial_value">{{$trade->initial_investment_value}}</td>
+                                <td><span>{{$trade->initial_investment_value}}</span></td>
+                                <td><span>--</span></td>
+                                <td><span>--</span></td>
+                              </tr>
+                              @endif
                             </tbody>
                           </table>
                         </div>
@@ -214,6 +261,34 @@ function formatDollar(num) {
 }
 
 $( document ).ready(function() {
+
+
+    var profit = $("#profit_tab").data('value');
+
+    if(profit < 0)
+    {
+      $("#profit_tab").css("background", "#ffbdbd");
+
+    }
+    else {
+        $("#profit_tab").css("background", "#caffbd");
+    }
+
+
+
+
+    var gain_percentage = $("#gain_percentage_tab").data('value');
+
+    if(gain_percentage < 0)
+    {
+      $("#gain_percentage_tab").css("background", "#ffbdbd");
+
+    }
+    else {
+        $("#gain_percentage_tab").css("background", "#caffbd");
+    }
+
+
 
     $.ajax({url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+"{{$trade->ticker}}"+"&apikey=KB8SMAYO3IWRKMPJ", success: function(result){
 
@@ -323,15 +398,31 @@ $( document ).ready(function() {
                     </div>
 
                     <div class="row">
+
+                      @if( $trade->type != "Non-NASDAQ")
                       <div class="col-6">
                         <h4>Profit / Loss</h4>
                         <p id="profit" data-profit="{{$trade->profit}}">{{$trade->profit}}</p>
                       </div>
+                      @else
+                      <div class="col-6">
+                        <h4>Profit / Loss</h4>
+                        <p id="profit" data-profit="--">--</p>
+                      </div>
+                      @endif
 
+
+                      @if( $trade->type != "Non-NASDAQ")
                       <div class="col-6">
                         <h4>Gain Percentage</h4>
                         <p id="gp" class="colorize" data-percentage="{{$trade->gain_percentage}}">{{$trade->gain_percentage}}%</span></p>
                       </div>
+                      @else
+                      <div class="col-6">
+                        <h4>Gain Percentage</h4>
+                        <p id="gp" class="colorize" data-percentage="--">--</span></p>
+                      </div>
+                      @endif
                     </div>
                   </div>
                 </div>

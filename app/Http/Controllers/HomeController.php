@@ -297,6 +297,7 @@ class HomeController extends Controller
         $trade->initial_investment_value = $request->stock_value;
         $trade->status = "Bought";
         $trade->buy_date = $request->buy_date;
+        $trade->type = "NASDAQ";
         $trade->save();
 
 
@@ -310,6 +311,46 @@ class HomeController extends Controller
       catch (\Illuminate\Database\QueryException $e)
       {
         return "HAHAHA: "+$e;
+      }
+      catch (\Exception $e)
+      {
+        return $e;
+      }
+    }
+
+    public function createTradeNonNasdaq(Request $request)
+    {
+      try
+      {
+        $trade = new Trade();
+        $trade->client_id = $request->client_id;
+        $trade->company = $request->company;
+        $trade->ticker = $request->ticker;
+        $trade->volume = $request->qty;
+        $trade->initial_stock_price = $request->stock_price;
+        $trade->initial_investment_value = $request->stock_value;
+        $trade->status = "Bought";
+        $trade->buy_date = $request->buy_date;
+        $trade->type = "Non-NASDAQ";
+        $trade->save();
+
+
+        $trade_history = new TradeHistory();
+        $trade_history->client_id = $trade->client_id;
+        $trade_history->trade_id = $trade->id;
+        $trade_history->action = "Bought";
+        $trade_history->save();
+
+        $notification = array(
+          "message" => "Success!",
+          "alert-type" => "success"
+        );
+
+        return back()->with($notification);
+      }
+      catch (\Illuminate\Database\QueryException $e)
+      {
+        return $e;
       }
       catch (\Exception $e)
       {
@@ -359,6 +400,14 @@ class HomeController extends Controller
              ->with('client', $client);
     }
 
+    public function adminCreateTradeNonNasdaq(Request $request, $id)
+    {
+      $client = Client::findOrFail($id);
+      return view('adminCreateTradeNonNasdaq')
+             ->with('client', $client);
+    }
+
+
     public function latestNews()
     {
       return view('latestNews');
@@ -370,14 +419,27 @@ class HomeController extends Controller
       $trades = Trade::where('client_id', Auth::user()->client->id)->limit(3)->get();
       foreach ($trades as $trade)
       {
-        $api_data = Api::stock()->daily($trade->ticker);
-        $trade_data = reset($api_data["Time Series (Daily)"]); //changes
-        $trade->stock_price = round($trade_data["4. close"], 2);
-        $trade->current_value = $trade->stock_price * $trade->volume;
-        $trade->current_value = (float) $trade->current_value;
-        $trade->initial_investment_value = (float) $trade->initial_investment_value;
-        $trade->profit = bcsub($trade->initial_investment_value,$trade->current_value);
-        $trade->gain_percentage = round(($trade->profit / $trade->initial_investment_value) * 100, 2);
+        if($trade->type != "Non-NASDAQ")
+        {
+          $api_data = Api::stock()->daily($trade->ticker);
+          $trade_data = reset($api_data["Time Series (Daily)"]); //changes
+          $trade->stock_price = round($trade_data["4. close"], 2);
+          $trade->current_value = $trade->stock_price * $trade->volume;
+          $trade->current_value = (float) $trade->current_value;
+          $trade->initial_investment_value = (float) $trade->initial_investment_value;
+          $trade->profit = bcsub($trade->initial_investment_value,$trade->current_value);
+          $trade->gain_percentage = round(($trade->profit / $trade->initial_investment_value) * 100, 2);
+        }
+        else
+        {
+          $trade->stock_price = $trade->initial_stock_price;
+          $trade->stock_price = $trade->initial_stock_price;
+          $trade->profit = "--";
+          $trade->gain_percentage ="--";
+          $trade->current_value = $trade->initial_investment_value;
+
+        }
+
 
       }
 
@@ -528,6 +590,8 @@ class HomeController extends Controller
     public function tradeEdit(Request $request)
     {
       $trade = Trade::findOrFail($request->id);
+      $trade->company = $request->company;
+      $trade->ticker = $request->ticker;
       $trade->initial_stock_price = $request->stock_price;
       $trade->buy_date = $request->buy_date;
       $trade->volume = $request->qty;

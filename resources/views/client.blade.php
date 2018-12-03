@@ -15,7 +15,7 @@
             <div class="col-12">
               <div class="card shadow-sm p-3 mb-5 bg-white rounded">
                 <div class="card-header">
-                  <h3>{{$client->fullname}}</h3>
+                  <h3>{{$client->salutation}}. {{$client->fullname}}</h3>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">
@@ -26,7 +26,11 @@
                   <p class="card-text">Stocks Owned: {{$client->trades->count()}}</p>
                   <!-- Button trigger modal -->
                   <a href="{{url('create-trade/client/'. $client->id)}}" class="btn btn-secondary btn-sm">
-                    Create Trade
+                    Create Trade (NASDAQ)
+                  </a>
+
+                  <a href="{{url('create-trade-non-nasdaq/client/'. $client->id)}}" class="btn btn-secondary btn-sm">
+                    Create Trade (Non NASDAQ)
                   </a>
 
                   @include('partials.clientCreateTrade')
@@ -94,6 +98,20 @@
                                     <div class="">
                                       <h2>Are you sure?</h2>
                                       <input type="hidden" name="id" value="{{$trade->id}}" class="form-control">
+
+                                      <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Company</label>
+                                        <div class="col-8">
+                                          <input id="company" name="company" placeholder="Company" value="{{$trade->company}}" class="form-control here" type="text">
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Ticker</label>
+                                        <div class="col-8">
+                                          <input id="ticker" name="ticker" placeholder="Ticker" value="{{$trade->ticker}}" class="form-control here" type="text">
+                                        </div>
+                                      </div>
 
                                       <div class="form-group row">
                                         <label for="name" class="col-4 col-form-label">Stock Price</label>

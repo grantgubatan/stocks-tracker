@@ -27,6 +27,7 @@ class CreateTradesTable extends Migration
             $table->dateTime('buy_date')->nullable();
             $table->dateTime('sell_date')->nullable();
             $table->string('status');
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }
