@@ -72,7 +72,7 @@
 
                         <li class="sidebar-dropdown">
                             <a href="{{url('latest-news')}}">
-                                <i data-feather="settings"></i> <span>Latest News</span>
+                                <i data-feather="alert-circle"></i> <span>Latest News</span>
                             </a>
                         </li>
 
