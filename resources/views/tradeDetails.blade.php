@@ -87,7 +87,7 @@
                 @else
                 <div class="col-6">
                   <h4>Current Stock Price</h4>
-                  <p><span>{{$trade->initial_stock_price}}</span></p>
+                  <p><span>${{$trade->initial_stock_price}}</span></p>
                 </div>
                 @endif
 
@@ -111,7 +111,7 @@
                 @else
                 <div class="col-6">
                   <h4>Current Investment Value</h4>
-                  <p><span>{{$trade->initial_investment_value}}</span></p>
+                  <p><span>${{$trade->initial_investment_value}}</span></p>
                 </div>
                 @endif
               </div>
@@ -204,8 +204,8 @@
                         </div>
 
                         <div class="row">
-                          <!-- <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_d6831&symbol={{$trade->ticker}}%3A&interval=D&symboledit=1&saveimage=1&toolbarbg=f1f3f6&details=1&news=1&studies=%5B%5D&newsvendors=stocktwits%1Fheadlines&hideideas=1&theme=Light&style=1&timezone=Etc%2FUTC&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en&utm_medium=widget&utm_campaign=chart&utm_term=AMZN%3A"
-                          width="100%" height="600px" frameBorder="0"></iframe> -->
+                          <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_d6831&symbol={{$trade->ticker}}%3A&interval=D&symboledit=1&saveimage=1&toolbarbg=f1f3f6&details=1&news=1&studies=%5B%5D&newsvendors=stocktwits%1Fheadlines&hideideas=1&theme=Light&style=1&timezone=Etc%2FUTC&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en&utm_medium=widget&utm_campaign=chart&utm_term=AMZN%3A"
+                          width="100%" height="600px" frameBorder="0"></iframe>
                         </div>
             </div>
           </div>
@@ -295,7 +295,9 @@ $( document ).ready(function() {
                 init_stock_price =  "{{$trade->initial_stock_price}}";
                 current_value_decim = value2["4. close"] * "{{$trade->volume}}";
                 initial_investment_price = "{{$trade->initial_investment_value}}";
-                profit = init_stock_price - parseFloat(initial_investment_price).toFixed(2);
+                profit_non_decim = parseFloat(initial_investment_price).toFixed(2) - parseFloat(current_value).toFixed(2);
+                profit = parseFloat(profit_non_decim).toFixed(2);
+                //console.log("HERE YOU GO:"+parseFloat(profit).toFixed(2));
                 gain_percentage = (profit / parseFloat(initial_investment_price).toFixed(2)) * 100;
                 var app6 = new Vue({
                 el: '#app-6',
@@ -308,7 +310,6 @@ $( document ).ready(function() {
                   current_value: formatDollar(parseFloat(current_value)),
                   current_value_decim: current_value_decim.toFixed(2),
                   profit: profit,
-                  profit_decim: profit.toFixed(2),
                   gain_percentage: gain_percentage,
                   gain_percentage_decim: gain_percentage.toFixed(2),
 

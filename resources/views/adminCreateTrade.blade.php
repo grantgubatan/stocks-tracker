@@ -140,7 +140,8 @@ function changeValue()
     stock_price = parseFloat($("#stock_price").val());
     qty = $("#qty").val();
     stock_value = stock_price * qty;
-    dollar_value = formatDollar(stock_value);
+    stock_value = stock_value.toFixed(2);
+    // dollar_value = formatDollar(stock_value);
     $("#stock_value").val(stock_value);
     // $('#stock_value').attr('data-sv', stock_value);
 
