@@ -39,6 +39,13 @@
                       </li>
                       <hr>
 
+                      <li class="sidebar-dropdown">
+                          <a href="{{url('admin-dashboard')}}">
+                             <i data-feather="home"></i>  <span> Admin Dashboard</span>
+                          </a>
+                      </li>
+                      <hr>
+
                         <li class="sidebar-dropdown">
                             <a href="{{url('create-client')}}">
                                <i data-feather="user-plus"></i>  <span> Create Clients</span>
@@ -61,14 +68,23 @@
                             </a>
                         </li>
 
-                        <!-- <li class="sidebar-dropdown">
+                        <hr>
+
+                        <li class="sidebar-dropdown">
                             <a href="{{url('latest-news')}}">
-                                <span>Latest News</span>
+                                <i data-feather="settings"></i> <span>Latest News</span>
+                            </a>
+                        </li>
+
+                        <hr>
+                        <!-- <li class="sidebar-dropdown">
+                            <a href="mailto:grantgubatan@gmail.com">
+                                <i data-feather="mail"></i> <span>Email Support Ticket</span>
                             </a>
                         </li> -->
-                        <hr>
+
                         <li class="sidebar-dropdown">
-                            <a href="mailto:grantgubatan@gmail.com">
+                            <a href="{{url('email-support')}}">
                                 <i data-feather="mail"></i> <span>Email Support Ticket</span>
                             </a>
                         </li>

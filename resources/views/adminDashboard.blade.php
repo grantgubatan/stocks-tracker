@@ -16,7 +16,7 @@
         </div> -->
 
         <div class="row">
-          <h1 class="blue-header"> <i data-feather="grid"></i> Dashboard</h1>
+          <h1 class="blue-header"> <i data-feather="grid"></i> Admin Dashboard</h1>
         </div>
         <br>
 

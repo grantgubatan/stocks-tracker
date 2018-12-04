@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/admin-dashboard', 'HomeController@adminDashboard')->name('adminDashboard')->middleware('verified');
 Route::get('/settings', 'HomeController@settings')->middleware('checkRole');
 Route::post('/admin-edit', 'HomeController@adminEditProfile')->name('admin-edit'); //EDIT CLIENT
 Route::post('/admin-create', 'HomeController@adminCreate')->name('admin-create');
@@ -56,6 +57,8 @@ Route::post('change-password','HomeController@changePassword')->name('change-pas
 
 /* NEWS */
 Route::get('/latest-news', 'HomeController@latestNews')->middleware('verified');
+Route::get('/email-support', 'HomeController@emailSupport')->middleware('verified');
+Route::post('/email-support', 'HomeController@emailSupportSend');
 
 
 /*ADMIN*/

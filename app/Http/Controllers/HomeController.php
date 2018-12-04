@@ -48,6 +48,11 @@ class HomeController extends Controller
 
     }
 
+    public function adminDashboard()
+    {
+      return view('adminDashboard');
+    }
+
     public function addClient(Request $request)
     {
       $client = new Client();
@@ -639,6 +644,31 @@ class HomeController extends Controller
     {
       $trades = Trade::where('client_id', Auth::user()->client->id)->get(['company','ticker']);
       return json_encode($trades);
+    }
+
+
+    public function emailSupport()
+    {
+      return view('emailsupport');
+    }
+
+    public function emailSupportSend(Request $request)
+    {
+      $data = array('fullname'=>$request->fullname, 'email'=>$request->email, 'subject'=>$request->subject, 'message_body'=>$request->message);
+
+      Mail::send('support', $data, function($message) use ($data)
+            {
+                $message->from($data["email"], $data["fullname"]);
+                $message->subject($data["subject"]);
+                $message->to('grantgubatan@gmail.com');
+            });
+
+      $notification = array(
+        "message" => "Email Sent",
+        "alert-type" => "success"
+      );
+
+      return back()->with($notification);
     }
 
 }

@@ -52,7 +52,7 @@
                         <hr>
 
                         <li class="sidebar-dropdown">
-                            <a href="#">
+                            <a href="{{url('latest-news')}}">
                                 <i data-feather="alert-circle"></i> <span>Market News</span>
                             </a>
                         </li>
@@ -71,11 +71,18 @@
                             </a>
                         </li> -->
                         <hr>
+
                         <li class="sidebar-dropdown">
-                            <a href="mailto:grantgubatan@gmail.com">
+                            <a href="{{url('email-support')}}">
                                 <i data-feather="mail"></i> <span>Email Support Ticket</span>
                             </a>
                         </li>
+                        
+                        <!-- <li class="sidebar-dropdown">
+                            <a href="mailto:grantgubatan@gmail.com">
+                                <i data-feather="mail"></i> <span>Email Support Ticket</span>
+                            </a>
+                        </li> -->
 
                         <!-- <li class="sidebar-dropdown">
                             <a href="#">
