@@ -24,22 +24,22 @@
                   @csrf
                   <div class="">
                     <label for="">Full Name</label>
-                    <input type="text" name="fullname" class="form-control" placeholder="Full Name" value="">
+                    <input type="text" name="fullname" class="form-control" placeholder="Full Name" value="" required>
                   </div>
 
                   <div class="">
                     <label for="">Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="Email" value="">
+                    <input type="email" name="email" class="form-control" placeholder="Email" value="" required>
                   </div>
 
                   <div class="">
                     <label for="">Subject</label>
-                    <input type="text" name="subject" class="form-control" placeholder="Subject" value="">
+                    <input type="text" name="subject" class="form-control" placeholder="Subject" value="" required>
                   </div>
 
                   <div class="">
                     <label for="">Message</label>
-                    <textarea name="message" rows="8" class="form-control" cols="80"></textarea>
+                    <textarea name="message" rows="8" class="form-control" cols="80"></textarea required>
                   </div>
                   <br>
                   <input type="submit" class="form-control btn btn-primary" value="Send Message">
