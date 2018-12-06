@@ -8,7 +8,7 @@
   }
 </style>
 
-@if($trade->status === "Bought")
+@if($trade->status !== "Sell Order")
 <div class="container page-wrapper chiller-theme toggled" id="app-6">
   <!-- sidebar-wrapper  -->
   <main class="page-content">
@@ -173,6 +173,7 @@
                                 <th>Current Value</th>
                                 <th>Profit / Loss</th>
                                 <th>Percentage Change</th>
+                                <th>Status</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -186,6 +187,7 @@
                                 <td><span v-cloak>@{{current_value}}</span></td>
                                 <td id="profit_tab" :data-value="profit"><span v-cloak>@{{profit}}</span></td>
                                 <td id="gain_percentage_tab" :data-value="gain_percentage_decim"><span v-cloak>@{{gain_percentage_decim}}%</span></td>
+                                <td>{{$trade->status}}</td>
                               </tr>
                               @else
                               <tr>
@@ -295,7 +297,7 @@ $( document ).ready(function() {
                 init_stock_price =  "{{$trade->initial_stock_price}}";
                 current_value_decim = value2["4. close"] * "{{$trade->volume}}";
                 initial_investment_price = "{{$trade->initial_investment_value}}";
-                profit_non_decim = parseFloat(initial_investment_price).toFixed(2) - parseFloat(current_value).toFixed(2);
+                profit_non_decim = parseFloat(current_value).toFixed(2) - parseFloat(initial_investment_price).toFixed(2);
                 profit = parseFloat(profit_non_decim).toFixed(2);
                 //console.log("HERE YOU GO:"+parseFloat(profit).toFixed(2));
                 gain_percentage = (profit / parseFloat(initial_investment_price).toFixed(2)) * 100;

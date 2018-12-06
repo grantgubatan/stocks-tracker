@@ -26,6 +26,7 @@ class CreateTradesTable extends Migration
             $table->decimal('gain_percentage', 10, 2)->nullable();
             $table->dateTime('buy_date')->nullable();
             $table->dateTime('sell_date')->nullable();
+            $table->dateTime('due_date')->nullable();
             $table->string('status');
             $table->string('type')->nullable();
             $table->timestamps();

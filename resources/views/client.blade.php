@@ -130,9 +130,20 @@
                                         <label for="name" class="col-4 col-form-label">Buy Date</label>
                                         <div class="col-8">
                                           @if ($trade->buy_date !== null)
-                                            <input id="buy_date" name="buy_date" placeholder="Date of Birth" class="form-control here" type="date" value="{{$trade->buy_date->format('Y-m-d')}}">
+                                            <input id="buy_date" name="buy_date" placeholder="Buy Date" class="form-control here" type="date" value="{{$trade->buy_date->format('Y-m-d')}}">
                                           @else
-                                          <input id="buy_date" name="buy_date" placeholder="Date of Birth" class="form-control here" type="date">
+                                          <input id="buy_date" name="buy_date" placeholder="Buy Date" class="form-control here" type="date">
+                                          @endif
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Due Date</label>
+                                        <div class="col-8">
+                                          @if ($trade->due_date !== null)
+                                            <input id="due_date" name="due_date" placeholder="Due Date" class="form-control here" type="date" value="{{$trade->due_date->format('Y-m-d')}}">
+                                          @else
+                                          <input id="due_date" name="due_date" placeholder="Due Date" class="form-control here" type="date">
                                           @endif
                                         </div>
                                       </div>
@@ -148,6 +159,20 @@
                                         <label for="name" class="col-4 col-form-label">Stock Value</label>
                                         <div class="col-8">
                                           <input id="stock_value" name="stock_value" value="{{$trade->initial_investment_value}}" placeholder="Stock Value" class="form-control here" type="text" required>
+                                        </div>
+                                      </div>
+
+
+                                      <div class="form-group row">
+                                        <label for="name" class="col-4 col-form-label">Stock Status</label>
+                                        <div class="col-8">
+                                          <select class="form-control" id="stock_status" name="stock_status">
+                                            <option value="">Select Status</option>
+                                            <option value="Overdue" {{ ( $trade->status == 'Overdue') ? 'selected' : '' }}>Overdue</option>
+                                            <option value="Outstanding" {{ ( $trade->status == 'Outstanding') ? 'selected' : '' }}>Outstanding</option>
+                                            <option value="Settled" {{ ( $trade->status == 'Settled') ? 'selected' : '' }}>Settled</option>
+                                            <option value="Sell Order" {{ ( $trade->status == 'Sell Order') ? 'selected' : '' }}>Sell Order</option>
+                                          </select>
                                         </div>
                                       </div>
 
@@ -214,7 +239,8 @@
                   <td>Action</td>
                   <td>Buy Date</td>
                   <td>Sell Date</td>
-                  <th>Transaction Date</th>
+                  <td>Due Date</td>
+                  <th>Stock Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -224,7 +250,8 @@
                         <td>{{$th->action}}</td>
                         <td>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</td>
                         <td>{{  $trade->sell_date === null ? "--" : \Carbon\Carbon::parse($trade->sell_date)->format('m/d/Y') }}</td>
-                        <td>{{$th->created_at->format('m/d/Y')}}</td>
+                        <td>{{  $trade->due_date === null ? "--" : \Carbon\Carbon::parse($trade->due_date)->format('m/d/Y') }}</td>
+                        <td>{{$th->trade->status}}</td>
                         </td>
                       </tr>
                   @endforeach
@@ -257,7 +284,8 @@ function changeValue()
     stock_price = parseFloat($("#stock_price").val());
     qty = $("#qty").val();
     stock_value = stock_price * qty;
-    dollar_value = formatDollar(stock_value);
+    stock_value = stock_value.toFixed(2);
+    // dollar_value = formatDollar(stock_value);
     $("#stock_value").val(stock_value);
     // $('#stock_value').attr('data-sv', stock_value);
 

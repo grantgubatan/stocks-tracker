@@ -31,14 +31,14 @@
                 <tr>
                   <th>Company Name</th>
                   <th>Ticker</th>
-                  <th>Per Share Purchase Price</th>
-                  <th>Current Stock Price</th>
+                  <!-- <th>Per Share Purchase Price</th>
+                  <th>Current Stock Price</th> -->
                   <th>Quantity</th>
-                  <th>Initial Investment</th>
+                  <!-- <th>Initial Investment</th>
                   <th>Current Investment Value</th>
                   <th>Profit / Loss</th>
                   <th>Percentage Change</th>
-                  <th>Buy Date</th>
+                  <th>Buy Date</th> -->
                   <th>View Stock Status</th>
                 </tr>
               </thead>
@@ -47,14 +47,14 @@
                       <tr>
                         <td>{{$trade->company}}</td>
                         <td>{{$trade->ticker}}</td>
-                        <td>${{$trade->initial_stock_price}}</td>
-                        <td>${{$trade->stock_price}}</td>
+                        <!-- <td>${{$trade->initial_stock_price}}</td>
+                        <td>${{$trade->stock_price}}</td> -->
                         <td>{{$trade->volume}}</td>
-                        <td>${{$trade->initial_investment_value}}</td>
+                        <!-- <td>${{$trade->initial_investment_value}}</td>
                         <td>${{$trade->current_value}}</td>
                         <td class="profit" data-value="{{$trade->profit}}">{{$trade->profit}}</td>
                         <td class="gain_percentage" data-value="{{$trade->gain_percentage}}">{{$trade->gain_percentage}}%</td>
-                        <td>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</td>
+                        <td>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</td> -->
                         <td>
                           <a href="{{url('trade/'.$trade->id)}}" class="btn btn-secondary">Trade Status</a>
                         </td>
@@ -64,6 +64,39 @@
             </table>
           </div>
         </div>
+
+        <br>
+        <div class="row">
+          <h3>Transaction History</h3>
+          <div class="table-responsive">
+            <table class="table table-striped" id="trades-table2">
+              <thead>
+                <tr>
+                  <td>Trade</td>
+                  <td>Action</td>
+                  <td>Buy Date</td>
+                  <td>Sell Date</td>
+                  <td>Due Date</td>
+                  <th>Stock Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                  @foreach (Auth::user()->client->trade_histories as $th)
+                      <tr>
+                        <td>{{$th->trade->company}}</td>
+                        <td>{{$th->action}}</td>
+                        <td>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</td>
+                        <td>{{  $trade->sell_date === null ? "--" : \Carbon\Carbon::parse($trade->sell_date)->format('m/d/Y') }}</td>
+                        <td>{{  $trade->due_date === null ? "--" : \Carbon\Carbon::parse($trade->due_date)->format('m/d/Y') }}</td>
+                        <td>{{$th->trade->status}}</td>
+                        </td>
+                      </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
   </main>
 <!-- page-content" -->
@@ -89,6 +122,10 @@ $(document).ready(function()
     $('#trades-table').DataTable(
     {
       "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>'
+    });
+
+    $('#trades-table2').DataTable({
+    "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>'
     });
 
 

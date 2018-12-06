@@ -300,8 +300,9 @@ class HomeController extends Controller
         $trade->volume = $request->qty;
         $trade->initial_stock_price = $request->stock_price;
         $trade->initial_investment_value = $request->stock_value;
-        $trade->status = "Bought";
+        $trade->status = $request->stock_status;
         $trade->buy_date = $request->buy_date;
+        $trade->due_date = $request->due_date;
         $trade->type = "NASDAQ";
         $trade->save();
 
@@ -334,8 +335,9 @@ class HomeController extends Controller
         $trade->volume = $request->qty;
         $trade->initial_stock_price = $request->stock_price;
         $trade->initial_investment_value = $request->stock_value;
-        $trade->status = "Bought";
+        $trade->status = $request->stock_status;
         $trade->buy_date = $request->buy_date;
+        $trade->due_date = $request->due_date;
         $trade->type = "Non-NASDAQ";
         $trade->save();
 
@@ -421,34 +423,40 @@ class HomeController extends Controller
 
     public function tradeManager()
     {
-      $trades = Trade::where('client_id', Auth::user()->client->id)->limit(3)->get();
-      foreach ($trades as $trade)
-      {
-        if($trade->type != "Non-NASDAQ")
-        {
-          $api_data = Api::stock()->daily($trade->ticker);
-          $trade_data = reset($api_data["Time Series (Daily)"]); //changes
-          $trade->stock_price = round($trade_data["4. close"], 2);
-          $trade->current_value = $trade->stock_price * $trade->volume;
-          $trade->current_value = (float) $trade->current_value;
-          $trade->initial_investment_value = (float) $trade->initial_investment_value;
-          $trade->profit = bcsub($trade->initial_investment_value,$trade->current_value);
-          $trade->gain_percentage = round(($trade->profit / $trade->initial_investment_value) * 100, 2);
-        }
-        else
-        {
-          $trade->stock_price = $trade->initial_stock_price;
-          $trade->stock_price = $trade->initial_stock_price;
-          $trade->profit = "--";
-          $trade->gain_percentage ="--";
-          $trade->current_value = $trade->initial_investment_value;
+      //$trades = Trade::where('client_id', Auth::user()->client->id)->limit(3)->get();
+      $client = Client::findOrFail(Auth::user()->client->id);
+      $trade_histories = TradeHistory::where('trade_id',Auth::user()->client->id);
 
-        }
+      $trades = Trade::where('client_id', Auth::user()->client->id)->get();
+      // foreach ($trades as $trade)
+      // {
+      //   if($trade->type != "Non-NASDAQ")
+      //   {
+      //     $api_data = Api::stock()->daily($trade->ticker);
+      //     $trade_data = reset($api_data["Time Series (Daily)"]); //changes
+      //     $trade->stock_price = round($trade_data["4. close"], 2);
+      //     $trade->current_value = $trade->stock_price * $trade->volume;
+      //     $trade->current_value = (float) $trade->current_value;
+      //     $trade->initial_investment_value = (float) $trade->initial_investment_value;
+      //     $trade->profit = bcsub($trade->current_value, $trade->initial_investment_value);
+      //     $trade->gain_percentage = round(($trade->profit / $trade->initial_investment_value) * 100, 2);
+      //   }
+      //   else
+      //   {
+      //     $trade->stock_price = $trade->initial_stock_price;
+      //     $trade->stock_price = $trade->initial_stock_price;
+      //     $trade->profit = "--";
+      //     $trade->gain_percentage ="--";
+      //     $trade->current_value = $trade->initial_investment_value;
+      //
+      //   }
+      //
+      //
+      // }
 
-
-      }
-
-      return view('user.trades')->with('trades', $trades);
+      return view('user.trades')
+      ->with('trades', $trades)
+      ->with('trade_histories', $trade_histories);
       // $api_data = Api::stock()->daily('MSFT');
       // return dd($api_data);
     }
@@ -599,8 +607,10 @@ class HomeController extends Controller
       $trade->ticker = $request->ticker;
       $trade->initial_stock_price = $request->stock_price;
       $trade->buy_date = $request->buy_date;
+      $trade->due_date = $request->due_date;
       $trade->volume = $request->qty;
       $trade->initial_investment_value = $request->stock_value;
+      $trade->status = $request->stock_status;
       $trade->save();
 
       $notification = array(
@@ -618,7 +628,7 @@ class HomeController extends Controller
     public function tradeSell(Request $request)
     {
       $trade = Trade::find($request->id);
-      $trade->status = "Sold";
+      $trade->status = "Sell Order";
       $trade->sell_date = Carbon::now()->toDateTimeString();
       $trade->sold_value = $request->sold_value;
       $trade->profit = $request->profit;

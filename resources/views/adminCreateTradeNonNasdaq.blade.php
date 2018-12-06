@@ -68,6 +68,13 @@
                               </div>
 
                               <div class="form-group row">
+                                <label for="name" class="col-4 col-form-label">Due Date</label>
+                                <div class="col-8">
+                                  <input id="due_date" name="due_date" placeholder="Due Date" class="form-control here" type="date" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
                                 <label for="name" class="col-4 col-form-label">Quantity</label>
                                 <div class="col-8">
                                   <input id="qty" name="qty" placeholder="Quantity" class="form-control here" type="number" min="1" required>
@@ -78,6 +85,19 @@
                                 <label for="name" class="col-4 col-form-label">Stock Value</label>
                                 <div class="col-8">
                                   <input id="stock_value" name="stock_value" placeholder="Stock Value" class="form-control here" type="text" required>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="name" class="col-4 col-form-label">Stock Status</label>
+                                <div class="col-8">
+                                  <select class="form-control" id="stock_status" name="stock_status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Overdue">Overdue</option>
+                                    <option value="Outstanding">Outstanding</option>
+                                    <option value="Settled">Settled</option>
+                                    <option value="Sell Order">Sell Order</option>
+                                  </select>
                                 </div>
                               </div>
 
