@@ -71,7 +71,7 @@
                         <hr>
 
                         <li class="sidebar-dropdown">
-                            <a href="{{url('latest-news')}}">
+                            <a href="{{url('#')}}">
                                 <i data-feather="alert-circle"></i> <span>Latest News</span>
                             </a>
                         </li>
