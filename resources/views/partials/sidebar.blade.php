@@ -71,17 +71,12 @@
                         <hr>
 
                         <li class="sidebar-dropdown">
-                            <a href="{{url('#')}}">
+                            <a href="{{url('latest-news')}}">
                                 <i data-feather="alert-circle"></i> <span>Latest News</span>
                             </a>
                         </li>
 
                         <hr>
-                        <!-- <li class="sidebar-dropdown">
-                            <a href="mailto:grantgubatan@gmail.com">
-                                <i data-feather="mail"></i> <span>Email Support Ticket</span>
-                            </a>
-                        </li> -->
 
                         <li class="sidebar-dropdown">
                             <a href="{{url('email-support')}}">

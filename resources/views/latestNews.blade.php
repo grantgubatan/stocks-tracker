@@ -29,18 +29,18 @@
             <div class="card shadow-sm p-3 mb-5 bg-white rounded col-6">
               <div class="card-body">
                 <h1 class="blue-header"><i data-feather="trending-up"></i> Market Overview</h1>
-                <div class="card-body mr-2">
+                <div class="card-body" style="height:600px">
                   <!-- TradingView Widget BEGIN -->
                   <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget" style="width:100%"></div>
+                    <div class="tradingview-widget-container__widget"></div>
                     <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Market Data</span></a> by TradingView</div> -->
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
                     {
                     "showChart": true,
                     "locale": "en",
                     "largeChartUrl": "",
-                    "width": "400",
-                    "height": "600",
+                    "width": "100%",
+                    "height": "100%",
                     "plotLineColorGrowing": "rgba(60, 188, 152, 1)",
                     "plotLineColorFalling": "rgba(255, 74, 104, 1)",
                     "gridLineColor": "rgba(233, 233, 234, 1)",

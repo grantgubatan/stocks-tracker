@@ -24,9 +24,9 @@
           <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
             <div class="card-body">
               <h2 class="blue-header"> <i data-feather="trending-up"></i> Market Data </h2>
-              <!-- <div class="tradingview-widget-container">
+              <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
-                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
+                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"></a></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
                 {
                 "symbols": [
@@ -54,7 +54,7 @@
                 "locale": "en"
               }
                 </script>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
@@ -63,8 +63,36 @@
           <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
             <div class="card-body">
               <h2 class="blue-header"> <i data-feather="bar-chart"></i> LIVE STOCK MARKET GRAPH</h2>
-              <!-- <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_d6831&symbol=AAPL%3A&interval=D&symboledit=1&saveimage=1&toolbarbg=f1f3f6&details=1&news=1&studies=%5B%5D&newsvendors=stocktwits%1Fheadlines&hideideas=1&theme=Light&style=1&timezone=Etc%2FUTC&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en&utm_medium=widget&utm_campaign=chart&utm_term=AMZN%3A"
-              width="100%" height="600px" frameBorder="0"></iframe> -->
+              <!-- TradingView Widget BEGIN -->
+              <div class="tradingview-widget-container" style="width:100%; height:600px;">
+                <div id="tradingview_aef1a" style="height:100%"></div>
+                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"></a> </div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                new TradingView.widget(
+                {
+                "autosize":true,
+                "symbol": "NASDAQ:AAPL",
+                "interval": "D",
+                "timezone": "Etc/UTC",
+                "theme": "Light",
+                "style": "1",
+                "locale": "en",
+                "toolbar_bg": "#f1f3f6",
+                "enable_publishing": false,
+                "allow_symbol_change": true,
+                "details": true,
+                "hotlist": true,
+                "calendar": true,
+                "news": [
+                  "headlines"
+                ],
+                "container_id": "tradingview_aef1a"
+              }
+                );
+                </script>
+              </div>
+              <!-- TradingView Widget END -->
             </div>
           </div>
         </div>

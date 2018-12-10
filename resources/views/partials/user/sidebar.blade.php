@@ -51,15 +51,9 @@
 
                         <hr>
 
-                        <!-- <li class="sidebar-dropdown">
-                            <a href="{{url('latest-news')}}">
-                                <i data-feather="alert-circle"></i> <span>Market News</span>
-                            </a>
-                        </li> -->
-
                         <li class="sidebar-dropdown">
-                            <a href="{{url('#')}}">
-                                <i data-feather="alert-circle"></i> <span>Market News</span>
+                            <a href="{{url('latest-news')}}">
+                                <i data-feather="alert-circle"></i> <span>Latest News</span>
                             </a>
                         </li>
 
