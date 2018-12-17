@@ -73,7 +73,7 @@
                 new TradingView.widget(
                 {
                 "autosize":true,
-                "symbol": "SEARCH",
+                "symbol": "AAPL",
                 "interval": "D",
                 "timezone": "Etc/UTC",
                 "theme": "Light",

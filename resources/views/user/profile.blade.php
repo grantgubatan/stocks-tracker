@@ -350,7 +350,6 @@ select {
                                   </div>
 
                                   <div class="col">
-                                    <div class="col">
                                       <label for="text">Account Type</label>
                                       <select class="form-control" name="account_type" disabled required>
                                         <option value="">Select Account Type</option>
@@ -358,7 +357,6 @@ select {
                                         <option value="Joint" {{ ( Auth::user()->client->account_type == 'Joint') ? 'selected' : '' }}>Joint</option>
                                         <option value="Corporate" {{ ( Auth::user()->client->account_type == 'Corporate') ? 'selected' : '' }}>Corporate</option>
                                         </select>
-                                    </div>
                                   </div>
 
                                   <div class="col">
@@ -380,17 +378,13 @@ select {
                                   </div>
 
                                   <div class="col">
-                                    <div class="col">
                                       <label for="text">Mobile Number</label>
                                       <input id="text" name="mobile_number" placeholder="Mobile Number" class="form-control here" type="text" value="{{Auth::user()->client->mobile_number}}" disabled>
-                                    </div>
                                   </div>
 
                                   <div class="col">
-                                    <div class="col">
                                       <label for="text">Home Number</label>
                                       <input id="text" name="home_number" placeholder="Home Number" class="form-control here" type="text" value="{{Auth::user()->client->home_number}}" disabled>
-                                    </div>
                                   </div>
                                 </div>
 

@@ -247,7 +247,7 @@
 
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
             <div class="card-body">
               <h1>Trade History</h1>
@@ -269,7 +269,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
   </main>
@@ -462,7 +462,7 @@ $( document ).ready(function() {
               </div>
 
 
-              <h1>Trade History</h1>
+              <!-- <h1>Trade History</h1>
               <div class="row">
                 <div class="col-4">
                   <h3>Buy Date</h3>
@@ -478,7 +478,7 @@ $( document ).ready(function() {
                   <h3>Stock Status</h3>
                   <p class="gain">{{$trade->status}}</p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
