@@ -161,7 +161,7 @@ class HomeController extends Controller
     public function viewClient(Request $request, $id)
     {
       $client = Client::findOrFail($id);
-      $trade_histories = TradeHistory::where('client_id',$client);
+      $trade_histories = TradeHistory::where('client_id',$client)->orderBy('created_at', 'desc')->get();
       return view('client')
               ->with('client', $client)
               ->with('trade_histories', $trade_histories);
@@ -425,7 +425,7 @@ class HomeController extends Controller
     {
       //$trades = Trade::where('client_id', Auth::user()->client->id)->limit(3)->get();
       $client = Client::findOrFail(Auth::user()->client->id);
-      $trade_histories = TradeHistory::where('client_id',$client);
+      $trade_histories = TradeHistory::where('client_id',$client)->orderBy('created_at', 'desc')->get();
 
       $trades = Trade::where('client_id', Auth::user()->client->id)->get();
       // foreach ($trades as $trade)
@@ -694,6 +694,37 @@ class HomeController extends Controller
       $trade->save();
       $notification = array(
         "message" => "Trade History Added!",
+        "alert-type" => "success"
+      );
+
+      return back()->with($notification);
+    }
+
+    public function editTradeHistory(Request $request)
+    {
+
+      $trade = TradeHistory::findOrFail($request->th_id);
+      $trade->stock = $request->stock;
+      $trade->stock_status = $request->stock_status;
+      $trade->profit = $request->profit;
+      $trade->buy_date = $request->buy_date;
+      $trade->sell_date = $request->sell_date;
+      $trade->save();
+
+      $notification = array(
+        "message" => "Trade History Edited!",
+        "alert-type" => "success"
+      );
+
+      return back()->with($notification);
+    }
+
+    public function deleteTradeHistory(Request $request)
+    {
+      $trade = TradeHistory::findOrFail($request->th_id);
+      $trade->delete();
+      $notification = array(
+        "message" => "Trade History Removed!",
         "alert-type" => "success"
       );
 

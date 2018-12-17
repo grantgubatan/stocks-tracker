@@ -299,6 +299,7 @@
                   <td>Buy Date</td>
                   <td>Sell Date</td>
                   <th>Stock Status</th>
+                  <th>Commands</th>
                 </tr>
               </thead>
               <tbody>
@@ -309,6 +310,107 @@
                         <td>{{  $th->buy_date === null ? "--" : \Carbon\Carbon::parse($th->buy_date)->format('m/d/Y') }}</td>
                         <td>{{  $th->sell_date === null ? "--" : \Carbon\Carbon::parse($th->sell_date)->format('m/d/Y') }}</td>
                         <td>{{$th->stock_status}}</td>
+                        <td>
+
+
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editTH{{$th->id}}">
+                            Edit
+                          </button>
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="editTH{{$th->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Edit Transaction History for {{$client->fullname}}</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <form class="" action="{{url('edit-th')}}" method="POST">
+                                  @csrf
+                                  <div class="modal-body">
+                                    <input type="hidden" name="th_id"  value="{{$th->id}}">
+                                    <div class="">
+                                      <label for="">Stock</label>
+                                      <input type="text" class="form-control" placeholder="Stock" name="stock" value="{{$th->stock}}" required>
+                                    </div>
+
+                                    <div class="">
+                                        <label for="">Profit/Loss</label>
+                                        <input type="text" name="profit" class="form-control" placeholder="Profit Loss" value="{{$th->profit}}">
+                                    </div>
+
+                                    <div class="">
+                                      <label for="">Stock Status</label>
+                                      <select class="form-control" id="stock_status" name="stock_status">
+                                        <option value="" >Select Status</option>
+                                        <option value="Overdue" {{ ( $th->stock_status == 'Overdue') ? 'selected' : '' }}>Overdue</option>
+                                        <option value="Outstanding" {{ ( $th->stock_status == 'Outstanding') ? 'selected' : '' }}>Outstanding</option>
+                                        <option value="Settled" {{ ( $th->stock_status == 'Settled') ? 'selected' : '' }}>Settled</option>
+                                        <option value="Sell Order" {{ ( $th->stock_status == 'Sell Order') ? 'selected' : '' }}>Sell Order</option>
+                                      </select>
+                                    </div>
+
+                                    <div class="">
+                                      <label for="name" class="col-4 col-form-label">Buy Date</label>
+                                      @if ($th->buy_date !== null)
+                                      <input id="buy_date" name="buy_date" placeholder="Buy Date" class="form-control here" type="date" value="{{$th->buy_date->format('Y-m-d')}}">
+                                      @else
+                                      <input id="buy_date" name="buy_date" placeholder="Buy Date" class="form-control here" type="date">
+                                      @endif
+                                    </div>
+
+                                    <div class="">
+                                      <label for="name" class="col-4 col-form-label">Sell Date</label>
+                                      @if ($th->buy_date !== null)
+                                      <input id="sell_date" name="sell_date" placeholder="Buy Date" class="form-control here" type="date" value="{{$th->buy_date->format('Y-m-d')}}">
+                                      @else
+                                      <input id="sell_date" name="sell_date" placeholder="Buy Date" class="form-control here" type="date">
+                                      @endif
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Confirm Changes</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteTH{{$th->id}}">
+                            Delete
+                          </button>
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="deleteTH{{$th->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Delete Transaction History for {{$client->fullname}}</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <form class="" action="{{url('delete-th')}}" method="POST">
+                                  @csrf
+                                  <div class="modal-body">
+                                    <input type="hidden" name="th_id"  value="{{$th->id}}">
+                                    <h3>Are you sure to remove  this transaction history?</h3>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Confirm</button>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </td>
                         </td>
                       </tr>
                   @endforeach
