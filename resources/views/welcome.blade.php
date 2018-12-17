@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    CLIENT PORTAL x
+                    CLIENT PORTAL
                 </div>
 
                 <!-- <div class="links">
