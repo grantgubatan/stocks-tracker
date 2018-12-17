@@ -264,7 +264,7 @@
 
                       <div class="">
                         <label for="">Stock Status</label>
-                        <select class="form-control" id="stock_status" name="stock_status" required>
+                        <select class="form-control" id="stock_status" name="stock_status">
                           <option value="">Select Status</option>
                           <option value="Overdue">Overdue</option>
                           <option value="Outstanding">Outstanding</option>
@@ -275,12 +275,12 @@
 
                       <div class="">
                         <label for="name" class="col-4 col-form-label">Buy Date</label>
-                        <input id="buy_date" name="buy_date" placeholder="Buy Date" class="form-control here" type="date" required>
+                        <input id="buy_date" name="buy_date" placeholder="Buy Date" class="form-control here" type="date">
                       </div>
 
                       <div class="">
                         <label for="name" class="col-4 col-form-label">Sell Date</label>
-                        <input id="sell_date" name="sell_date" placeholder="Buy Date" class="form-control here" type="date" required>
+                        <input id="sell_date" name="sell_date" placeholder="Buy Date" class="form-control here" type="date">
                       </div>
                     </div>
                     <div class="modal-footer">

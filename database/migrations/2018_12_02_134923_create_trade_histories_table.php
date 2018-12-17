@@ -18,8 +18,8 @@ class CreateTradeHistoriesTable extends Migration
             $table->integer('client_id');
             $table->integer('trade_id')->nullable();
             $table->string('stock');
-            $table->string('stock_status');
-            $table->string('profit');
+            $table->string('stock_status')->nullable();
+            $table->string('profit')->nullable();
             $table->dateTime('buy_date')->nullable();
             $table->dateTime('sell_date')->nullable();
             $table->timestamps();
