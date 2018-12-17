@@ -231,27 +231,84 @@
         <br>
         <div class="row">
           <h3>Transaction History</h3>
+
           <div class="table-responsive">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Add Transaction History
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Transaction History for {{$client->fullname}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form class="" action="{{url('add-th')}}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                      <input type="hidden" name="client_id"  value="{{$client->id}}">
+                      <div class="">
+                        <label for="">Stock</label>
+                        <input type="text" class="form-control" placeholder="Stock" name="stock" required>
+                      </div>
+
+                      <div class="">
+                          <label for="">Profit/Loss</label>
+                          <input type="text" name="profit" class="form-control" placeholder="Profit Loss" value="">
+                      </div>
+
+                      <div class="">
+                        <label for="">Stock Status</label>
+                        <select class="form-control" id="stock_status" name="stock_status" required>
+                          <option value="">Select Status</option>
+                          <option value="Overdue">Overdue</option>
+                          <option value="Outstanding">Outstanding</option>
+                          <option value="Settled">Settled</option>
+                          <option value="Sell Order">Sell Order</option>
+                        </select>
+                      </div>
+
+                      <div class="">
+                        <label for="name" class="col-4 col-form-label">Buy Date</label>
+                        <input id="buy_date" name="buy_date" placeholder="Buy Date" class="form-control here" type="date" required>
+                      </div>
+
+                      <div class="">
+                        <label for="name" class="col-4 col-form-label">Sell Date</label>
+                        <input id="sell_date" name="sell_date" placeholder="Buy Date" class="form-control here" type="date" required>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <hr>
             <table class="table table-striped" id="trades-table2">
               <thead>
                 <tr>
-                  <td>Trade</td>
-                  <td>Action</td>
+                  <td>Stock</td>
+                  <td>Profit / Loss</td>
                   <td>Buy Date</td>
                   <td>Sell Date</td>
-                  <td>Due Date</td>
                   <th>Stock Status</th>
                 </tr>
               </thead>
               <tbody>
                   @foreach ($client->trade_histories as $th)
                       <tr>
-                        <td>{{$th->trade->company}}</td>
-                        <td>{{$th->action}}</td>
-                        <td>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</td>
-                        <td>{{  $trade->sell_date === null ? "--" : \Carbon\Carbon::parse($trade->sell_date)->format('m/d/Y') }}</td>
-                        <td>{{  $trade->due_date === null ? "--" : \Carbon\Carbon::parse($trade->due_date)->format('m/d/Y') }}</td>
-                        <td>{{$th->trade->status}}</td>
+                        <td>{{$th->stock}}</td>
+                        <td>{{$th->profit}}</td>
+                        <td>{{  $th->buy_date === null ? "--" : \Carbon\Carbon::parse($th->buy_date)->format('m/d/Y') }}</td>
+                        <td>{{  $th->sell_date === null ? "--" : \Carbon\Carbon::parse($th->sell_date)->format('m/d/Y') }}</td>
+                        <td>{{$th->stock_status}}</td>
                         </td>
                       </tr>
                   @endforeach

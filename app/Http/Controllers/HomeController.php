@@ -161,7 +161,7 @@ class HomeController extends Controller
     public function viewClient(Request $request, $id)
     {
       $client = Client::findOrFail($id);
-      $trade_histories = TradeHistory::where('trade_id',$id);
+      $trade_histories = TradeHistory::where('client_id',$client);
       return view('client')
               ->with('client', $client)
               ->with('trade_histories', $trade_histories);
@@ -307,11 +307,11 @@ class HomeController extends Controller
         $trade->save();
 
 
-        $trade_history = new TradeHistory();
-        $trade_history->client_id = $trade->client_id;
-        $trade_history->trade_id = $trade->id;
-        $trade_history->action = "Bought";
-        $trade_history->save();
+        // $trade_history = new TradeHistory();
+        // $trade_history->client_id = $trade->client_id;
+        // $trade_history->trade_id = $trade->id;
+        // $trade_history->action = "Bought";
+        // $trade_history->save();
         return "ok";
       }
       catch (\Illuminate\Database\QueryException $e)
@@ -342,11 +342,11 @@ class HomeController extends Controller
         $trade->save();
 
 
-        $trade_history = new TradeHistory();
-        $trade_history->client_id = $trade->client_id;
-        $trade_history->trade_id = $trade->id;
-        $trade_history->action = "Bought";
-        $trade_history->save();
+        // $trade_history = new TradeHistory();
+        // $trade_history->client_id = $trade->client_id;
+        // $trade_history->trade_id = $trade->id;
+        // $trade_history->action = "Bought";
+        // $trade_history->save();
 
         $notification = array(
           "message" => "Success!",
@@ -425,7 +425,7 @@ class HomeController extends Controller
     {
       //$trades = Trade::where('client_id', Auth::user()->client->id)->limit(3)->get();
       $client = Client::findOrFail(Auth::user()->client->id);
-      $trade_histories = TradeHistory::where('trade_id',Auth::user()->client->id);
+      $trade_histories = TradeHistory::where('client_id',$client);
 
       $trades = Trade::where('client_id', Auth::user()->client->id)->get();
       // foreach ($trades as $trade)
@@ -635,11 +635,11 @@ class HomeController extends Controller
       $trade->gain_percentage = $request->gain_percentage;
       $trade->save();
 
-      $trade_history = new TradeHistory();
-      $trade_history->trade_id = $trade->id;
-      $trade_history->client_id = $trade->client_id;
-      $trade_history->action = "Sold";
-      $trade_history->save();
+      // $trade_history = new TradeHistory();
+      // $trade_history->trade_id = $trade->id;
+      // $trade_history->client_id = $trade->client_id;
+      // $trade_history->action = "Sold";
+      // $trade_history->save();
 
       $notification = array(
         "message" => "Trade Sold",
@@ -675,6 +675,25 @@ class HomeController extends Controller
 
       $notification = array(
         "message" => "Email Sent",
+        "alert-type" => "success"
+      );
+
+      return back()->with($notification);
+    }
+
+    public function addTradeHistory(Request $request)
+    {
+
+      $trade = new TradeHistory();
+      $trade->client_id = $request->client_id;
+      $trade->stock = $request->stock;
+      $trade->stock_status = $request->stock_status;
+      $trade->profit = $request->profit;
+      $trade->buy_date = $request->buy_date;
+      $trade->sell_date = $request->sell_date;
+      $trade->save();
+      $notification = array(
+        "message" => "Trade History Added!",
         "alert-type" => "success"
       );
 

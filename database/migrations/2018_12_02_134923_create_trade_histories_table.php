@@ -16,8 +16,12 @@ class CreateTradeHistoriesTable extends Migration
         Schema::create('trade_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('client_id');
-            $table->integer('trade_id');
-            $table->string('action');
+            $table->integer('trade_id')->nullable();
+            $table->string('stock');
+            $table->string('stock_status');
+            $table->string('profit');
+            $table->dateTime('buy_date')->nullable();
+            $table->dateTime('sell_date')->nullable();
             $table->timestamps();
         });
     }

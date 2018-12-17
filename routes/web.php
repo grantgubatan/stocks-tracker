@@ -63,7 +63,7 @@ Route::post('/email-support', 'HomeController@emailSupportSend');
 
 /*ADMIN*/
 Route::post('/admin-delete', 'HomeController@adminDelete');
-
+Route::post('/add-th', 'HomeController@addTradeHistory');
 
 /*API*/
 Route::get('/user-stocks', 'HomeController@userStocks');

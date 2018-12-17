@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style media="screen">
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+</style>
 <div class="container page-wrapper chiller-theme toggled">
   <!-- sidebar-wrapper  -->
   <main class="page-content">

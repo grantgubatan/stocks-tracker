@@ -63,6 +63,7 @@
           <div class="card shadow-sm p-3 mb-5 bg-white rounded col-12">
             <div class="card-body">
               <h2 class="blue-header"> <i data-feather="bar-chart"></i> LIVE STOCK MARKET GRAPH</h2>
+              <p>Put the stock ticker on the search field (top left) and hit enter to see its status</p>
               <!-- TradingView Widget BEGIN -->
               <div class="tradingview-widget-container" style="width:100%; height:600px;">
                 <div id="tradingview_aef1a" style="height:100%"></div>
@@ -72,7 +73,7 @@
                 new TradingView.widget(
                 {
                 "autosize":true,
-                "symbol": "NASDAQ:AAPL",
+                "symbol": "SEARCH",
                 "interval": "D",
                 "timezone": "Etc/UTC",
                 "theme": "Light",

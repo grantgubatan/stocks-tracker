@@ -72,25 +72,23 @@
             <table class="table table-striped" id="trades-table2">
               <thead>
                 <tr>
-                  <td>Trade</td>
-                  <td>Action</td>
+                  <td>Stock</td>
+                  <td>Profit / Loss</td>
                   <td>Buy Date</td>
                   <td>Sell Date</td>
-                  <td>Due Date</td>
                   <th>Stock Status</th>
                 </tr>
               </thead>
               <tbody>
                   @foreach (Auth::user()->client->trade_histories as $th)
-                      <tr>
-                        <td>{{$th->trade->company}}</td>
-                        <td>{{$th->action}}</td>
-                        <td>{{  $trade->buy_date === null ? "--" : \Carbon\Carbon::parse($trade->buy_date)->format('m/d/Y') }}</td>
-                        <td>{{  $trade->sell_date === null ? "--" : \Carbon\Carbon::parse($trade->sell_date)->format('m/d/Y') }}</td>
-                        <td>{{  $trade->due_date === null ? "--" : \Carbon\Carbon::parse($trade->due_date)->format('m/d/Y') }}</td>
-                        <td>{{$th->trade->status}}</td>
-                        </td>
-                      </tr>
+                  <tr>
+                    <td>{{$th->stock}}</td>
+                    <td>{{$th->profit}}</td>
+                    <td>{{  $th->buy_date === null ? "--" : \Carbon\Carbon::parse($th->buy_date)->format('m/d/Y') }}</td>
+                    <td>{{  $th->sell_date === null ? "--" : \Carbon\Carbon::parse($th->sell_date)->format('m/d/Y') }}</td>
+                    <td>{{$th->stock_status}}</td>
+                    </td>
+                  </tr>
                   @endforeach
               </tbody>
             </table>
