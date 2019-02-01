@@ -124,8 +124,8 @@ class HomeController extends Controller
 
         Mail::send('mail', $data, function($message) use ($data)
               {
-                  $message->from('dunnandburchillportal@gmail.com', "Dunn & Burchill");
-                  $message->subject("Your Generated Password:");
+                  $message->from('support@dunnandburchill.com', "Support - Dunn & Burchill");
+                  $message->subject("Support - Your Generated Password:");
                   $message->to($data["recipient"]);
               });
 
@@ -521,7 +521,7 @@ class HomeController extends Controller
 
         Mail::send('mail', $data, function($message) use ($data)
               {
-                  $message->from('dunnandburchillportal@gmail.com', "Dunn & Burchill");
+                  $message->from('support@dunnandburchill.com', "Dunn & Burchill");
                   $message->subject("Your Generated Password:");
                   $message->to($data["recipient"]);
               });
@@ -670,7 +670,7 @@ class HomeController extends Controller
             {
                 $message->from($data["email"], $data["fullname"]);
                 $message->subject($data["subject"]);
-                $message->to('grantgubatan@gmail.com');
+                $message->to('support@dunnandburchill.com');
             });
 
       $notification = array(
