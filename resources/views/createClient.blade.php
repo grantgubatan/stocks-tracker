@@ -740,7 +740,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
                       <label for="">Marital Status</label>
                       <select class="form-control" name="secondary_mstatus">
                         <option value="">Select Marital Status</option>
@@ -751,11 +751,11 @@
                       </select>
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
 
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
 
                     </div>
 
