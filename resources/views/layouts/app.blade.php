@@ -210,15 +210,25 @@ $("#show-sidebar").click(function()
   $(".page-wrapper").addClass("toggled");
 });
 
-$(window).resize(function() {
- if ($(window).width() < 960) {
-    $(".page-wrapper").removeClass("toggled");
- }
+$(window).resize(function()
+{
+   if ($(window).width() < 960)
+   {
+      $(".page-wrapper").removeClass("toggled");
+   }
+   else
+   {
+      $(".page-wrapper").addClass("toggled");
+   }
+});
+
+
+if ($(window).width() < 960) {
+  $(".page-wrapper").removeClass("toggled");
+}
 else {
    $(".page-wrapper").addClass("toggled");
 }
-});
-
 
 
 
