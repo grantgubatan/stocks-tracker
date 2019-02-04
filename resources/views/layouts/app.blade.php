@@ -49,11 +49,9 @@
   </head>
   <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="z-index:1000;position: fixed;width: 100%;">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="z-index:1;position: fixed;width: 100%;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                  <img src="{{ asset('logo-final4.png') }}" alt="">
-                </a>
+
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -176,5 +174,54 @@
 @endif
 
 feather.replace()
+
+jQuery(function ($) {
+
+    $(".sidebar-dropdown > a").click(function()
+    {
+        $(".sidebar-submenu").slideUp(200);
+        if (
+          $(this)
+            .parent()
+            .hasClass("active")
+        ) {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this)
+            .parent()
+            .removeClass("active");
+        } else {
+          $(".sidebar-dropdown").removeClass("active");
+          $(this)
+            .next(".sidebar-submenu")
+            .slideDown(200);
+          $(this)
+            .parent()
+            .addClass("active");
+        }
+    });
+
+$("#close-sidebar").click(function()
+{
+  $(".page-wrapper").removeClass("toggled");
+});
+
+$("#show-sidebar").click(function()
+{
+  $(".page-wrapper").addClass("toggled");
+});
+
+$(window).resize(function() {
+ if ($(window).width() < 960) {
+    $(".page-wrapper").removeClass("toggled");
+ }
+else {
+   $(".page-wrapper").addClass("toggled");
+}
+});
+
+
+
+
+});
 
 </script>
