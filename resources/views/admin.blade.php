@@ -7,7 +7,7 @@
   <main class="page-content">
       <div class="">
         <div class="row">
-          <h1 class="blue-header"> <i data-feather="users"></i> MANAGEx CLIENTS</h1>
+          <h1 class="blue-header"> <i data-feather="users"></i> MANAGE CLIENTS</h1>
         </div>
         <div class="row">
           <a href="{{url('create-client')}}" class="btn btn-primary btn-sm">Create Client</a>
