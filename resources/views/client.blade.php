@@ -24,29 +24,38 @@
                   </h5>
                   <p class="card-text">Occupation: {{$client->occupation}}</p>
                   <p class="card-text">Stocks Owned: {{$client->trades->count()}}</p>
-                  <!-- Button trigger modal -->
-                  <a href="{{url('create-trade/client/'. $client->id)}}" class="btn btn-secondary btn-sm">
-                    Create Trade (NASDAQ)
-                  </a>
 
-                  <a href="{{url('create-trade-non-nasdaq/client/'. $client->id)}}" class="btn btn-secondary btn-sm">
-                    Create Trade (Non NASDAQ)
-                  </a>
+                  <div class="row" style="text-align:center">
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                      <!-- Button trigger modal -->
+                      <a href="{{url('create-trade/client/'. $client->id)}}" class="btn btn-secondary btn-sm">
+                        Create Trade (NASDAQ)
+                      </a>
+                    </div>
 
-                  @include('partials.clientCreateTrade')
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                      <a href="{{url('create-trade-non-nasdaq/client/'. $client->id)}}" class="btn btn-secondary btn-sm">
+                        Create Trade (Non NASDAQ)
+                      </a>
 
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#viewClientProfile">
-                    View Profile
-                  </button>
-                  @include('partials.viewClientProfile')
+                      @include('partials.clientCreateTrade')
 
+                    </div>
 
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editBalance">
-                    Edit Balance
-                  </button>
-                  @include('partials.editBalance')
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                      <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#viewClientProfile">
+                        View Profile
+                      </button>
+                      @include('partials.viewClientProfile')
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                      <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editBalance">
+                        Edit Balance
+                      </button>
+                      @include('partials.editBalance')
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

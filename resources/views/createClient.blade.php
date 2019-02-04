@@ -1,12 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style media="screen">
+@media only screen and (max-width : 500px) {
+  .header-title .blue-header {
+    text-align: center;
+    font-size: 32px;
+  }
+}
+</style>
 <div class="container page-wrapper chiller-theme toggled">
   <!-- sidebar-wrapper  -->
   <main class="page-content">
       <div class="">
-        <h1 class="blue-header"> <i data-feather="user-plus"></i> Create Client</h1>
+        <div class="header-title">
+          <h1 class="blue-header"> <i data-feather="user-plus"></i> Create Client</h1>
+        </div>
         <div class="row">
           <div class="col-12">
             <form class="" action="{{url('client-add')}}" method="POST">
@@ -17,12 +26,12 @@
                   <input type="text" name="fullname" value="" class="form-control" placeholder="Full Name" required>
                 </div>
                 <div class="row">
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Email <span class="blue-header">(required)</span></label>
                     <input type="email" name="em" value="" class="form-control" placeholder="Email" required>
                   </div>
 
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Alternate Email</label>
                     <input type="email" name="em2" value="" class="form-control" placeholder="Alternate Email">
                   </div>
@@ -31,12 +40,12 @@
 
 
                 <div class="row">
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Phone Number <span class="blue-header">(required)</span></label>
                     <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number" required>
                   </div>
 
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Alternate Phone Number</label>
                     <input type="text" name="phone2" value="" class="form-control" placeholder="Alternate Phone Number">
                   </div>
@@ -354,17 +363,17 @@
                 </div>
 
                 <div class="row">
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Mobile Number</label>
                     <input type="text" name="mobile_number" value="" class="form-control" placeholder="Mobile Number">
                   </div>
 
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Home Number</label>
                     <input type="text" name="home_number" value="" class="form-control" placeholder="Home Number">
                   </div>
 
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Business</label>
                     <input type="text" name="business_number" value="" class="form-control" placeholder="Business Number">
                   </div>
@@ -376,12 +385,12 @@
                     <input type="date" name="dob" value="" class="form-control" placeholder="Date of birth">
                   </div>
 
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Place of Birth</label>
                     <input type="text" name="pob" value="" class="form-control" placeholder="Place of Birth">
                   </div>
 
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Marital Status <span class="blue-header">(required)</span></label>
                     <select class="form-control" name="mstatus" required>
                       <option value="">Select Marital Status</option>
@@ -394,7 +403,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Employment Status <span class="blue-header">(required)</span></label>
                     <select class="form-control" name="empstatus" required>
                       <option value="">Select Employment Status</option>
@@ -407,7 +416,7 @@
                     </select>
                   </div>
 
-                  <div class="col">
+                  <div class="col-sm-12 col-md-6 col-lg-6">
                     <label for="">Company Name</label>
                     <input type="text" name="company_name" value="" class="form-control" placeholder="Company Name">
                   </div>
@@ -424,7 +433,7 @@
                   <h2>Secondary Account Holder (OPTIONAL)</h2>
 
                   <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                       <label for="">Salutation <span class="blue-header">(required)</span></label>
                       <select class="form-control" name="secondary_salutation">
                         <option value="">Select Salutation</option>
@@ -434,29 +443,29 @@
                       </select>
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                       <label for="">Full Name</label>
                       <input type="text" name="secondary_fullname" value="" class="form-control" placeholder="Full Name">
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                       <label for="">Address</label>
                       <input type="text" name="secondary_address" value="" class="form-control" placeholder="Address">
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                       <label for="">Primary Number</label>
                       <input type="text" name="secondary_primary_number" value="" class="form-control" placeholder="Primary Number">
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                       <label for="">Mobile Number</label>
                       <input type="text" name="secondary_mobile_number" value="" class="form-control" placeholder="Mobile Number">
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                       <label for="">Home Number</label>
                       <input type="text" name="secondary_home_number" value="" class="form-control" placeholder="Home Number">
                     </div>
@@ -473,12 +482,12 @@
                       <input type="date" name="secondary_dob" value="" class="form-control" placeholder="Date of birth">
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                       <label for="">Place of Birth</label>
                       <input type="text" name="secondary_pob" value="" class="form-control" placeholder="Place of Birth">
                     </div>
 
-                    <div class="col">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                       <label for="">Country</label>
                       <select class="form-control" name="secondary_country">
                         <option value="">Select Country</option>

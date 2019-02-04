@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style media="screen">
+@media only screen and (max-width : 500px) {
+  .blue-header {
+    text-align: center;
+    font-size: 22px;
+  }
+}
+</style>
 <div class="container page-wrapper chiller-theme toggled">
   <!-- sidebar-wrapper  -->
   <main class="page-content">

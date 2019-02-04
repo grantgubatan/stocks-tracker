@@ -39,48 +39,48 @@ select {
                             @csrf
                                 <input type="hidden" name="id" value="{{Auth::user()->client->id}}">
                                 <div class="row">
-                                  <div class="col">
-                                    <label for="name" class="col-4 col-form-label">Full Name</label>
-                                    <div class="col-8">
+                                  <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <label for="name" class="">Full Name</label>
+                                    <div class="">
                                       <input id="name" name="fullname" placeholder="Full Name" class="form-control here" type="text" value="{{Auth::user()->client->fullname}}" disabled>
                                     </div>
                                   </div>
 
                                   <div class="col">
-                                    <label for="email" class="col-4 col-form-label">Email</label>
-                                    <div class="col-8">
+                                    <label for="email" class=" ">Email</label>
+                                    <div class="">
                                       <input id="name" name="email" placeholder="Email" class="form-control here" type="text" value="{{Auth::user()->client->email}}" disabled>
                                     </div>
                                   </div>
                                 </div>
 
                                 <div class="row">
-                                  <div class="col">
-                                    <label for="email" class="col-4 col-form-label">Alternative Email</label>
-                                    <div class="col-8">
+                                  <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <label for="email" class=" ">Alternative Email</label>
+                                    <div class="">
                                       <input id="name" name="email2" placeholder="Alternative Email" class="form-control here" type="text" value="{{Auth::user()->client->email2}}" disabled>
                                     </div>
                                   </div>
 
-                                  <div class="col">
-                                    <label for="email" class="col-4 col-form-label">Phone Number</label>
-                                    <div class="col-8">
+                                  <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <label for="email" class=" ">Phone Number</label>
+                                    <div class="">
                                       <input id="name" name="phone" placeholder="Phone Number" class="form-control here" type="text" value="{{Auth::user()->client->phone}}" disabled>
                                     </div>
                                   </div>
                                 </div>
 
                                 <div class="row">
-                                  <div class="col">
-                                    <label for="email" class="col-4 col-form-label">Alternative Phone Number</label>
-                                    <div class="col-8">
+                                  <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <label for="email" class=" ">Alternative Phone Number</label>
+                                    <div class="">
                                       <input id="name" name="phone2" placeholder="Alternative Phone Number" class="form-control here" type="text" value="{{Auth::user()->client->phone2}}" disabled>
                                     </div>
                                   </div>
 
-                                  <div class="col">
-                                    <label for="email" class="col-4 col-form-label">Country</label>
-                                    <div class="col-8">
+                                  <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <label for="email" class=" ">Country</label>
+                                    <div class="">
                                       <select class="form-control" name="country" disabled required>
                                         <option value="">Select Country</option>
                                         <option value="Afghanistan" {{ ( Auth::user()->client->country == 'Afghanistan') ? 'selected' : '' }}>Afghanistan</option>
@@ -333,9 +333,9 @@ select {
                                 </div>
 
                                 <div class="row">
-                                  <div class="col">
-                                    <label for="email" class="col-4 col-form-label">Occupation</label>
-                                    <div class="col-8">
+                                  <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <label for="email" class=" ">Occupation</label>
+                                    <div class="">
                                       <input id="name" name="occupation" placeholder="Occupation" class="form-control here" type="text" value="{{Auth::user()->client->occupation}}" disabled>
                                     </div>
                                   </div>
@@ -344,12 +344,12 @@ select {
                                 <hr>
 
                                 <div class="row">
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="text">Account Number</label>
                                     <input id="text" name="account_number" placeholder="Account Number" class="form-control here" type="text" value="{{Auth::user()->client->account_number}}" disabled>
                                   </div>
 
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                       <label for="text">Account Type</label>
                                       <select class="form-control" name="account_type" disabled required>
                                         <option value="">Select Account Type</option>
@@ -359,7 +359,7 @@ select {
                                         </select>
                                   </div>
 
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="">Salutation</label>
                                     <select class="form-control" name="salutation" disabled required>
                                       <option value="">Select Salutation</option>
@@ -372,29 +372,29 @@ select {
 
 
                                 <div class="row">
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="text">Address</label>
                                     <input id="text" name="address" placeholder="Address" class="form-control here" type="text" value="{{Auth::user()->client->address}}" disabled>
                                   </div>
 
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                       <label for="text">Mobile Number</label>
                                       <input id="text" name="mobile_number" placeholder="Mobile Number" class="form-control here" type="text" value="{{Auth::user()->client->mobile_number}}" disabled>
                                   </div>
 
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                       <label for="text">Home Number</label>
                                       <input id="text" name="home_number" placeholder="Home Number" class="form-control here" type="text" value="{{Auth::user()->client->home_number}}" disabled>
                                   </div>
                                 </div>
 
                                 <div class="row">
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="text">Business Number</label>
                                     <input id="text" name="business_number" placeholder="Business Number" class="form-control here" type="text" value="{{Auth::user()->client->business_number}}" disabled>
                                   </div>
 
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="text">Date of Birth</label>
                                     @if (Auth::user()->client->dob !== null)
                                     <input id="date" name="dob" placeholder="Date of Birth" class="form-control here" type="date" value="{{Auth::user()->client->dob->format('Y-m-d')}}" disabled>
@@ -403,7 +403,7 @@ select {
                                     @endif
                                   </div>
 
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="text">Place of Birth</label>
                                     <input id="text" name="pob" placeholder="Home Number" class="form-control here" type="text" value="{{Auth::user()->client->pob}}" disabled>
                                   </div>
@@ -411,7 +411,7 @@ select {
 
 
                                 <div class="row">
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="">Marital Status (required)</label>
                                     <select class="form-control" name="mstatus" disabled required>
                                       <option value="">Select Marital Status</option>
@@ -422,19 +422,19 @@ select {
                                     </select>
                                   </div>
 
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="text">Company Name</label>
                                     <input id="text" name="company_name" placeholder="Company Name" class="form-control here" type="text" value="{{Auth::user()->client->company_name}}" disabled>
                                   </div>
 
-                                  <div class="col">
+                                  <div class="col-sm-12 col-md-6 col-lg-4">
                                     <label for="text">Company Address</label>
                                     <input id="text" name="company_address" placeholder="Company Address" class="form-control here" type="text" value="{{Auth::user()->client->company_address}}" disabled>
                                   </div>
                                 </div>
 
                                 <!-- <div class="form-group row">
-                                  <label for="email" class="col-4 col-form-label">Traded</label>
+                                  <label for="email" class=" ">Traded</label>
                                   <div class="col-8">
                                     <input type="radio" value="yes" name="traded" {{ ( Auth::user()->client->traded == 'yes') ? 'checked' : '' }} disabled> YES
                                     <input type="radio" value="no" name="traded" {{ ( Auth::user()->client->traded == 'no') ? 'checked' : '' }} disabled> NO

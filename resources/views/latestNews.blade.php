@@ -16,7 +16,7 @@
   <main class="page-content">
       <div class="">
           <div class="row">
-            <div class="card shadow-sm p-3 mb-5 bg-white rounded col-6 col-offset-2">
+            <div class="card shadow-sm p-3 mb-5 bg-white rounded col-sm-12 col-md-12 col-lg-6 col-offset-2">
               <div class="card-body mr-2">
                 <h1 class="blue-header"> Latest Market News</h1>
                 <iframe src="https://api.stocktwits.com/widgets/stream?width=630&height=600&scrollbars=true&streaming=true&limit=20&title=MARKET%20NEWS&symbol=AAPL&border_color=cecece&box_color=f5f5f5&header_text_color=000000&divider_color=cecece&stream_color=ffffff&divider_type=solid&link_color=4871a8&link_hover_color=4871a8&text_color=000000&time_color=999999"
@@ -26,7 +26,7 @@
 
 
 
-            <div class="card shadow-sm p-3 mb-5 bg-white rounded col-6">
+            <div class="card shadow-sm p-3 mb-5 bg-white rounded col-sm-12 col-md-12 col-lg-6">
               <div class="card-body">
                 <h1 class="blue-header"><i data-feather="trending-up"></i> Market Overview</h1>
                 <div class="card-body" style="height:600px">
