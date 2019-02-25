@@ -37,7 +37,12 @@
                   </div>
                 </div>
 
-
+                <div class="row">
+                  <div class="col">
+                    <label for="">Alpha Vantage API Key<span class="blue-header"> <a href="https://www.alphavantage.co/support/#api-key" target="_blank">get it here</a> </span></label>
+                    <input type="text" name="api_key" value="" class="form-control" placeholder="API Key">
+                  </div>
+                </div>
 
                 <div class="row">
                   <div class="col-sm-12 col-md-6 col-lg-6">

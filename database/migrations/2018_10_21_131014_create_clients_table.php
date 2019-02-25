@@ -26,7 +26,7 @@ class CreateClientsTable extends Migration
             $table->string('leadsource')->nullable();
             $table->string('traded')->nullable();
             $table->decimal('account_balance', 10, 2)->nullable();
-            
+
             $table->string('account_number')->nullable();
             $table->string('account_type')->nullable();
             $table->string('salutation')->nullable();

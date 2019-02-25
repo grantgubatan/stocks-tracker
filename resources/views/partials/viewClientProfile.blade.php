@@ -46,6 +46,14 @@
 		                    <form action="{{url('client-edit')}}" method="POST" id="editClientForm">
                           @csrf
                               <input type="hidden" name="id" value="{{$client->id}}">
+
+                              <div class="row">
+                                <div class="col">
+                                  <label for="name">API Key</label>
+                                  <input type="text" id="name" name="api_key" placeholder="API Key" class="form-control here" type="text" value="{{$client->api_key}}" disabled>
+                                </div>
+                              </div>
+
                               <div class="row">
                                 <div class="col">
                                   <label for="name">Full Name</label>

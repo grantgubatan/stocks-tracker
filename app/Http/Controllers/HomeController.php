@@ -57,6 +57,7 @@ class HomeController extends Controller
     {
       $client = new Client();
       $client->fullname = $request->fullname;
+      $client->api_key = $request->api_key;
       $client->email = $request->em;
       $client->email2 = $request->em2;
       $client->phone = $request->phone;
@@ -171,6 +172,7 @@ class HomeController extends Controller
     {
       $client = Client::findOrFail($request->id);
       $client->fullname = $request->fullname;
+      $client->api_key = $request->api_key;
       $client->email2 = $request->email2;
       $client->phone = $request->phone;
       $client->phone2 = $request->phone2;
