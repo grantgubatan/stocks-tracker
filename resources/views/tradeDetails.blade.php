@@ -296,7 +296,7 @@ function formatDollar(num) {
 
 $( document ).ready(function() {
 
-    $.ajax({url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+"{{$trade->ticker}}"+"&apikey={{$trade->client->api_key === '' ? KB8SMAYO3IWRKMPJ : $trade->client->api_key}}", success: function(result){
+    $.ajax({url: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+"{{$trade->ticker}}"+"&apikey={{$trade->client->api_key == '' ? 'KB8SMAYO3IWRKMPJ' : $trade->client->api_key}}", success: function(result){
         console.log("BOY:{{$trade->client->api_key === '' ? KB8SMAYO3IWRKMPJ : $trade->client->api_key}}");
         $(".loader-div").hide();
         $("#stock_data").removeAttr('hidden');
