@@ -49,7 +49,7 @@
 
                               <div class="row">
                                 <div class="col">
-                                  <label for="name">API Key</label>
+                                  <label for="name">API Key  <a href="https://www.alphavantage.co/support/#api-key" target="_blank">(get it here)</a></label>
                                   <input type="text" id="name" name="api_key" placeholder="API Key" class="form-control here" type="text" value="{{$client->api_key}}" disabled>
                                 </div>
                               </div>
