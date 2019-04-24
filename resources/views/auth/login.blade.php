@@ -4,6 +4,14 @@
 <div class="container" style="margin-top:150px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="text-center">
+                <a class="navbar-brand" href="{{ url('/') }}" style="width:45%">
+                  <img src="{{ asset('logo-final4.png') }}" alt="">
+                </a>
+            </div>
+
+            <br>
+
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
